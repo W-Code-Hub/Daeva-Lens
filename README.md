@@ -20,7 +20,7 @@
 |---|---|---|
 | ![Sounds](docs/img/ayar-sesler.png) | ![Privacy](docs/img/ayar-gizlilik.png) | ![Window and data](docs/img/ayar-pencere-ve-veri.png) |
 
-_All images are the real interface, captured while replaying a recorded test session (`test/kayitlar`) with Streamer mode on, so names appear as aliases. No live game was used. The recording comes from real gameplay (a packet recording replayed inside the program), and the player name is masked._
+_All images are the real interface, captured while replaying a local recorded test session (not published) with Streamer mode on, so names appear as aliases. No live game was used. The recording comes from real gameplay (a packet recording replayed inside the program), and the player name is masked._
 
 ## Features
 

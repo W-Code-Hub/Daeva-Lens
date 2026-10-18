@@ -20,7 +20,7 @@
 |---|---|---|
 | ![Sesler](../img/ayar-sesler.png) | ![Gizlilik](../img/ayar-gizlilik.png) | ![Pencere ve veri](../img/ayar-pencere-ve-veri.png) |
 
-_Tüm görüntüler programın gerçek arayüzüdür; Yayıncı modu açıkken kayıtlı bir test oturumu (`test/kayitlar`) oynatılarak alındı, bu yüzden adlar takma ad görünür. Canlı oyun kullanılmadı. Kayıt gerçek oynanıştan alınmış bir paket kaydıdır (program içinde oynatıldı) ve oyuncu adı maskelenmiştir._
+_Tüm görüntüler programın gerçek arayüzüdür; Yayıncı modu açıkken yerel, yayınlanmayan kayıtlı bir test oturumu oynatılarak alındı, bu yüzden adlar takma ad görünür. Canlı oyun kullanılmadı. Kayıt gerçek oynanıştan alınmış bir paket kaydıdır (program içinde oynatıldı) ve oyuncu adı maskelenmiştir._
 
 ## Özellikler
 

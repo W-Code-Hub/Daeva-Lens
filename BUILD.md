@@ -62,7 +62,7 @@ Your build may **not** produce exactly the same hash as the official release; th
 - The exe is unsigned; if Windows SmartScreen warns, click **More info > Run anyway**.
 
 ## About the test recordings
-Full tests need local game recordings; for privacy reasons the recordings are not published, so those tests are skipped. Tests that need recordings show up in the output as "SKIPPED (local recording needed)" (the program prints this in Turkish as "ATLANDI (yerel kayıt gerekli)"). Only one anonymous sample recording is kept in `test/kayitlar/`; local network addresses are anonymized (10.0.0.x), and server addresses are the game's public servers.
+Full tests need local game recordings; for privacy reasons the recordings are not published, so those tests are skipped. Tests that need recordings show up in the output as "SKIPPED (local recording needed)" (the program prints this in Turkish as "ATLANDI (yerel kayıt gerekli)"). No recordings are published; the `test/kayitlar/` folder is empty.
 
 ## Building the helper (a2co-capture.exe) from source
 `bin\a2co-capture.exe` is the small helper that passively listens to the game's network traffic (written in Go, GPL-3.0). Its source is in the `capture` folder (`main.go`, `raw.go`, `go.mod`).

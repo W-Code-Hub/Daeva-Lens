@@ -62,7 +62,7 @@ Derlemeniz resmî sürümle bire bir aynı hash'i **vermeyebilir**; bu normaldir
 - Exe imzasızdır; Windows SmartScreen uyarırsa **Ek bilgi > Yine de çalıştır**.
 
 ## Test kayıtları hakkında
-Tam testler yerel oyun kayıtları ister; gizlilik nedeniyle kayıtlar yayınlanmıyor, bu testler atlanır. Kayıt gerektiren testler çıktıda "ATLANDI (yerel kayıt gerekli)" olarak görünür. `test/kayitlar/` içinde yalnız adsız bir örnek kayıt kalır; yerel ağ adresleri anonimleştirilmiştir (10.0.0.x), sunucu adresleri oyunun herkese açık sunucularıdır.
+Tam testler yerel oyun kayıtları ister; gizlilik nedeniyle kayıtlar yayınlanmıyor, bu testler atlanır. Kayıt gerektiren testler çıktıda "ATLANDI (yerel kayıt gerekli)" olarak görünür. Hiçbir kayıt yayınlanmıyor; `test/kayitlar/` klasörü boştur.
 
 ## Yardımcı programı (a2co-capture.exe) kaynaktan derleme
 `bin\a2co-capture.exe`, oyunun ağ trafiğini pasif dinleyen küçük yardımcı programdır (Go ile yazılmış, GPL-3.0). Kaynağı `capture` klasöründedir (`main.go`, `raw.go`, `go.mod`).
