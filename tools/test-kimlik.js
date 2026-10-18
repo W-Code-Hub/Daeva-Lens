@@ -24,8 +24,8 @@ function oynat(file, kesSn, charName) {
 module.exports = [
   ['kimlik: ad paketiyle doğrulanan kimliği zayıf eşleşme devralmaz', () => {
     const e = []; const ok = mk(e); const c = { t: 1000 };
-    const eng = newEngine(c, 'Player1');
-    eng.meter.setName(5000, 'Player1');
+    const eng = newEngine(c, 'Player0');
+    eng.meter.setName(5000, 'Player0');
     eng.pickOwn(5000, 'isim', 'test');
     eng.pickOwn(5001, 'eşleşme', 'giden istek');
     ok(eng.ownId === 5000, 'zayıf eşleşme kimliği çalmamalı: ' + eng.ownId);
@@ -45,9 +45,9 @@ module.exports = [
   ['kimlik: kayıt 20. sn\'den başlayınca (ad kayıtlı) "sen" 2987 kalır', async () => {
     if (kayitYok('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl')) return { skip: true };
     const e = []; const ok = mk(e);
-    const eng = await oynat('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl', 20, 'Player1');
+    const eng = await oynat('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl', 20, 'Player0');
     ok(eng.ownId === 2987, 'ownId 2987 olmalı: ' + eng.ownId);
-    ok(eng.meter.label(2987) === 'Player1', 'etiket Player1 olmalı: ' + eng.meter.label(2987));
+    ok(eng.meter.label(2987) === 'Player0', 'etiket Player0 olmalı: ' + eng.meter.label(2987));
     return e;
   }],
 ];

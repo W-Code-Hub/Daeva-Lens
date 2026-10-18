@@ -1,4 +1,4 @@
-# Daeva Lens 2.2.0 · User Guide
+# Daeva Lens 2.2.1 · User Guide
 
 English · Türkçe: [docs/tr/GUIDE.md](docs/tr/GUIDE.md)
 

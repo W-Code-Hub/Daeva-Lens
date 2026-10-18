@@ -15,7 +15,7 @@ Icerik:
                       ui/mask, itemKind, sharecard (saf kisimlar), classifyBossCast
   tools/replay.js, satirlar.js  Yardimci araclar (kayit okuma/denetim)
   test/beklenen.json  Her kayit icin dogru cevaplar
-  test/kayitlar/      Gizlilik nedeniyle yayinlanan kayit yoktur (klasor bos); kayit isteyen testler ATLANDI olur. Kendi kayitlarinizi buraya koyabilirsiniz
+  test/kayitlar/      Yalnizca adsiz ornek kayit; digerleri gizlilik nedeniyle yayinlanmaz, ilgili testler ATLANDI olur
 
 Notlar:
   - Fuzz testi kayitlari su klasorlerde arar: test/kayitlar, %APPDATA%\Daeva Lens\kayitlar,

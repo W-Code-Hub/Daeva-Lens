@@ -227,14 +227,14 @@ function syncTimerAlertUi() {
   $('timerCombatField').classList.toggle('dis', off);
 }
 function loadTimerAlertUi(s) {
-  $('timerAlertMode').value = s.timerAlertMode || 'both';
+  $('timerAlertMode').value = s.timerAlertMode || 'off';
   timerSteps = new Set(Array.isArray(s.timerAlertSteps) ? s.timerAlertSteps : [10, 5, 1, 0]);
   for (const b of $('timerSteps').children) { const on = timerSteps.has(Number(b.dataset.v)); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }
   $('timerSound').value = s.timerSound || 'chime';
   $('timerVolume').value = typeof s.timerVolume === 'number' ? s.timerVolume : 70;
   $('timerVolumeV').textContent = $('timerVolume').value + '%';
-  $('timerBeep').checked = s.timerBeep !== false;
-  $('timerTts').checked = s.timerTts !== false;
+  $('timerBeep').checked = s.timerBeep === true;
+  $('timerTts').checked = s.timerTts === true;
   $('timerToastMode').value = s.timerToastMode || 'auto';
   $('timerToastSec').value = s.timerToastSec || 15;
   $('timerCombat').value = s.timerCombat || 'quiet';
@@ -369,7 +369,7 @@ async function refreshRatings() {
   try { plData = await api.rateData(); } catch { return false; }
   plNames = null;
   $('playerRatingsOn').checked = plData.on !== false;
-  $('blacklistAlert').checked = plData.alert !== false;
+  $('blacklistAlert').checked = plData.alert === true;
   bhSig = '';
   if (lastBossState) renderBossTab(lastBossState, lastBossEnc);
   return true;
@@ -1244,7 +1244,7 @@ api.on('state', (st) => {
   streamer = !!(st.ui && st.ui.streamerMode);
   if (st.mask) { stMask = st.mask; applyMask(); }
   recapOn = !(st.ui && st.ui.deathRecap === false);
-  pbOn = !(st.ui && st.ui.personalBest === false);
+  pbOn = !!(st.ui && st.ui.personalBest === true);
   renderBossTab(st, st.bossEnc || null);
 });
 
@@ -1394,30 +1394,30 @@ async function load() {
   if ($('cdViewModeSel')) {
     for (const b of $('cdViewModeSel').children) b.classList.toggle('on', b.dataset.v === cdMode);
   }
-  $('showTarget').checked = s.showTarget !== false;
-  $('showGS').checked = s.showGS !== false;
-  $('bossTarget').checked = s.bossTarget !== false;
+  $('showTarget').checked = s.showTarget === true;
+  $('showGS').checked = s.showGS === true;
+  $('bossTarget').checked = s.bossTarget === true;
   if ($('bossView')) $('bossView').checked = s.bossView !== false;
   $('deathRecap').checked = s.deathRecap !== false;
-  $('personalBest').checked = s.personalBest !== false;
-  if ($('blacklistAlert')) $('blacklistAlert').checked = s.blacklistAlert !== false;
+  $('personalBest').checked = s.personalBest === true;
+  if ($('blacklistAlert')) $('blacklistAlert').checked = s.blacklistAlert === true;
   $('streamerMode').checked = !!s.streamerMode;
   $('autoShowWithGame').checked = s.autoShowWithGame !== false;
-  $('showCP').checked = s.showCP !== false;
-  $('showIdleParty').checked = s.showIdleParty !== false;
+  $('showCP').checked = s.showCP === true;
+  $('showIdleParty').checked = s.showIdleParty === true;
   applyLang(s.lang || (typeof I18N !== 'undefined' ? I18N.getLang() : 'en'));
   $('combatOnlySound').checked = s.combatOnlySound;
-  if ($('soundStagger')) $('soundStagger').checked = s.soundStagger !== false;
-  if ($('soundLowHp')) $('soundLowHp').checked = s.soundLowHp !== false;
-  if ($('soundPotion')) $('soundPotion').checked = s.soundPotion !== false;
-  if ($('visualToasts')) $('visualToasts').checked = s.visualToasts !== false;
-  if ($('itemTts')) $('itemTts').value = s.itemTts || 'name';
+  if ($('soundStagger')) $('soundStagger').checked = s.soundStagger === true;
+  if ($('soundLowHp')) $('soundLowHp').checked = s.soundLowHp === true;
+  if ($('soundPotion')) $('soundPotion').checked = s.soundPotion === true;
+  if ($('visualToasts')) $('visualToasts').checked = s.visualToasts === true;
+  if ($('itemTts')) $('itemTts').value = s.itemTts || 'off';
 
   updateCombatSoundChoices();
   $('autoStart').checked = !!s.autoStart;
   $('screenProtect').checked = s.screenProtect === true;
-  $('timersOn').checked = s.timersOn !== false;
-  $('tab-timers').classList.toggle('dis', s.timersOn === false);
+  $('timersOn').checked = s.timersOn === true;
+  $('tab-timers').classList.toggle('dis', s.timersOn !== true);
   if ($('timerRegion').value !== s.timerRegion) $('timerRegion').value = s.timerRegion || 'global-eu';
   loadTimerAlertUi(s);
   for (const g of document.querySelectorAll('.seg2[data-k]')) for (const b of g.children) b.classList.toggle('on', String(s[g.dataset.k]) === b.dataset.v);

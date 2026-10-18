@@ -1,6 +1,26 @@
-# Daeva Lens 2.2.0 · Sürüm Notları
+# Daeva Lens 2.2.1 · Sürüm Notları
 
 Türkçe · English: [CHANGELOG.md](../../CHANGELOG.md)
+
+## 2.2.1
+
+Düzeltmeler
+- Panel taşıma ve konum kilidi: sürükleme ve kilit artık güvenilir çalışır.
+- Bölge değişiminden sonra sayaç boş kalmaz.
+- Sessizce yutulan hatalar artık günlüğe yazılır.
+- Kaybolan bir ağ paketi okumayı takıp bırakmaz; yaklaşık yarım saniye sonra atlanır.
+- Ctrl+R ile boss sıfırlama her yerde aynı davranır.
+
+Değişenler
+- Sesler, ekran bildirimleri, etkinlik zamanlayıcıları ve ek paneller (bekleme süreleri, hedef çubuğu, Gear Score, Combat Power, vurmayan parti üyeleri, boss hedefi) varsayılan olarak kapalıdır; Ayarlar'dan açılır. Mevcut ayarlarınız olduğu gibi korunur.
+- README, imzasız exe uyarısını ve SHA256 doğrulamasını açıklar.
+- Altı yeni otomatik test.
+
+Daeva Lens oyuna dokunmaz; yalnızca ağ trafiğinin pasif bir kopyasını okur. Ekran yakalama koruması varsayılan olarak kapalıdır.
+
+---
+
+# Daeva Lens 2.2.0 · Sürüm Notları
 
 2.1.0 sonrası değişiklikler.
 

@@ -260,11 +260,11 @@ function testSummonMerging() {
   // --- 2. BÖLÜM: GENEL CANAVAR DÖVÜŞÜ (BOSS DEĞİL, NORMAL CANAVAR / ZİNDAN) ---
   const m2 = new Meter({ skillName: () => 'Skill', now: () => clock, idleMs: 8000 });
   m2.setOwn(1421); // Bizim karakterimiz (Avcı / Ranger)
-  m2.setName(1421, 'Player1');
+  m2.setName(1421, 'Player0');
   m2.setName(3052, 'Akrep'); // Elementalist oyuncu
   m2.targetInfo = (id) => ({ name: 'Orman Ayısı', code: 501, boss: false, max: 200000, hp: 200000 });
 
-  // Biz (Player1) ve tuzağımız (ID 75000, Ranger skili 14170000) normal canavara vuruyoruz
+  // Biz (Player0) ve tuzağımız (ID 75000, Ranger skili 14170000) normal canavara vuruyoruz
   m2.damage({ t: clock + 1000, actor: 1421, target: 501, skill: 14010000, damage: 15000, crit: true, back: false });
   m2.damage({ t: clock + 1100, actor: 75000, target: 501, skill: 14170000, damage: 8000, crit: false, back: false });
 
@@ -277,13 +277,13 @@ function testSummonMerging() {
   const normActors = normSnap.enc.actors;
 
   if (normActors.length !== 2) {
-    errors.push(`Genel dövüş aktör sayısı ${normActors.length}, beklenen 2 (Player1 ve Akrep)`);
+    errors.push(`Genel dövüş aktör sayısı ${normActors.length}, beklenen 2 (Player0 ve Akrep)`);
   }
   const me = normActors.find((a) => a.id === 1421);
   if (!me) {
     errors.push('Genel dövüşte kendi karakterimiz bulunamadı');
   } else if (me.total !== 23000) {
-    errors.push(`Player1 toplam hasarı ${me.total}, beklenen 23000 (tuzak hasarı 8000 eklenmeli)`);
+    errors.push(`Player0 toplam hasarı ${me.total}, beklenen 23000 (tuzak hasarı 8000 eklenmeli)`);
   }
   const otherEle = normActors.find((a) => a.id === 3052);
   if (!otherEle) {
@@ -299,7 +299,7 @@ function testSummonMerging() {
   // kalabalik-karisik.jsonl'daki gerçek durum: adı gelmemiş bir Avcı (#3794) bizim Avcı'mıza,
   // adı gelmemiş 5 Cleric adı bilinen bir Chanter'a ekleniyordu; ruh → ruh → oyuncu zinciri kayboluyordu.
   const m3 = new Meter({ skillName: () => 'Skill', now: () => clock, idleMs: 8000 });
-  m3.setOwn(2987); m3.setName(2987, 'Player1');      // biz: Avcı
+  m3.setOwn(2987); m3.setName(2987, 'Player0');      // biz: Avcı
   m3.setName(12568, 'Fastrill');                     // adı bilinen Chanter
   m3.setName(582, 'Palemasked');                     // adı bilinen Elementalist
   m3.targetInfo = () => ({ name: 'Kalabalık', code: 700, boss: false, max: 9e6, hp: 9e6 });
@@ -316,7 +316,7 @@ function testSummonMerging() {
   m3.damage({ t: t3 + 80, actor: 70001, target: 700, skill: 16020000, damage: 1000 });
   const s3 = m3.snapshot(0, { view: 'all', bossView: false }).enc.actors;
   const tot = (id) => { const a = s3.find((x) => x.id === id); return a ? a.total : null; };
-  if (tot(2987) !== 10000) errors.push(`B-12: Player1 ${tot(2987)}, beklenen 10000 (başka Avcının hasarı eklenmemeli)`);
+  if (tot(2987) !== 10000) errors.push(`B-12: Player0 ${tot(2987)}, beklenen 10000 (başka Avcının hasarı eklenmemeli)`);
   if (tot(3794) !== 30000) errors.push(`B-12: adsız Avcı #3794 ${tot(3794)}, beklenen 30000 (kendi satırında)`);
   if (tot(12568) !== 5000) errors.push(`B-12: Fastrill ${tot(12568)}, beklenen 5000 (adsız Cleric eklenmemeli)`);
   if (tot(1386) !== 25000) errors.push(`B-12: adsız Cleric #1386 ${tot(1386)}, beklenen 25000`);
@@ -536,12 +536,12 @@ function testActorMigrationAndDeduplication() {
     now: () => clock,
     idleMs: 8000,
   });
-  m.charName = 'Player1';
-  m.setParty({ size: 3, dungeon: 1, members: ['Player1', 'Player3', 'Player4'] });
+  m.charName = 'Player0';
+  m.setParty({ size: 3, dungeon: 1, members: ['Player0', 'Player3', 'Player4'] });
 
   // 1. Dövüş başlar: Kullanıcı eski ID 9327 ile vurur (2,243 hasar)
   m.setOwn(9327);
-  m.setName(9327, 'Player1');
+  m.setName(9327, 'Player0');
   m.damage({ t: clock, actor: 9327, target: 99, skill: 14010000, damage: 2243, crit: false, back: false });
 
   // 2. Diğer oyuncu (Player3) vurur (11,104 hasar)
@@ -555,7 +555,7 @@ function testActorMigrationAndDeduplication() {
   // 4. Bölge geçişi / dirilme: Karakter ID 14808 olur
   clock += 1000;
   m.setOwn(14808);
-  m.setName(14808, 'Player1');
+  m.setName(14808, 'Player0');
 
   // 5. Player4 de dirilip yeni ID 7702 alır ve vurur (144,300 hasar)
   m.setName(7702, 'Player4');
@@ -568,21 +568,21 @@ function testActorMigrationAndDeduplication() {
   const snap = m.snapshot(0, { view: 'party' });
   const actors = snap.enc.actors;
 
-  // Aktör sayısı kesinlikle 3 olmalı (Player1, Player3, Player4; mükerrer satır olmamalı)
+  // Aktör sayısı kesinlikle 3 olmalı (Player0, Player3, Player4; mükerrer satır olmamalı)
   if (actors.length !== 3) {
-    errors.push(`Aktör sayısı ${actors.length}, beklenen 3 (mükerrer Player1 ve Player4 engellenmeli)`);
+    errors.push(`Aktör sayısı ${actors.length}, beklenen 3 (mükerrer Player0 ve Player4 engellenmeli)`);
   }
 
-  const player1 = actors.find((a) => a.own || a.name === 'Player1');
-  if (!player1) {
-    errors.push('Player1 aktörü bulunamadı');
+  const player0 = actors.find((a) => a.own || a.name === 'Player0');
+  if (!player0) {
+    errors.push('Player0 aktörü bulunamadı');
   } else {
     const expectedDmg = 2243 + 11015; // 13258
-    if (player1.total !== expectedDmg) {
-      errors.push(`Player1 toplam hasarı ${player1.total}, beklenen ${expectedDmg} (eski ID hasarı yeniye eklenmeli)`);
+    if (player0.total !== expectedDmg) {
+      errors.push(`Player0 toplam hasarı ${player0.total}, beklenen ${expectedDmg} (eski ID hasarı yeniye eklenmeli)`);
     }
-    if (!player1.own) {
-      errors.push('Player1 aktöründe own: true olmalı');
+    if (!player0.own) {
+      errors.push('Player0 aktöründe own: true olmalı');
     }
   }
 
@@ -601,9 +601,9 @@ function testActorMigrationAndDeduplication() {
     errors.push(`Player4 adında ${lynxDuplicates.length} adet aktör çıktı (1 olmalı)`);
   }
 
-  const duplicates = actors.filter((a) => a.name === 'Player1' || (a.name && a.name.includes('Player1')));
+  const duplicates = actors.filter((a) => a.name === 'Player0' || (a.name && a.name.includes('Player0')));
   if (duplicates.length > 1) {
-    errors.push(`Player1 adında ${duplicates.length} adet aktör çıktı (1 olmalı)`);
+    errors.push(`Player0 adında ${duplicates.length} adet aktör çıktı (1 olmalı)`);
   }
 
   return errors;
@@ -723,7 +723,7 @@ function testFakeBossProtectionAndInstantOwner() {
 function testStrictOwnerSeparation() {
   const errors = [];
   const eng = new Engine({
-    charName: 'Player1',
+    charName: 'Player0',
     now: () => 1000,
   });
 
@@ -735,7 +735,7 @@ function testStrictOwnerSeparation() {
   eng.owner.cast(5555, 14010000, 1070);
 
   if (eng.ownId === 5555) {
-    errors.push('Farklı isimli oyuncu (Player7) yanlışlıkla kendi karakterimiz (Player1) sanıldı');
+    errors.push('Farklı isimli oyuncu (Player7) yanlışlıkla kendi karakterimiz (Player0) sanıldı');
   }
 
   // 3. İsimsiz bir oyuncu (ID: 6666) kazara eşleşti diyelim; sonradan ismi 'Arthur' geldiğinde sahiplik bırakılmalı
@@ -747,10 +747,10 @@ function testStrictOwnerSeparation() {
     errors.push('Gerçek adı Arthur olan oyuncunun ismi geldiğinde sahiplik bırakılmadı');
   }
 
-  // 4. Doğru isimli karakterimiz (Player1, ID: 7777) geldiğinde hemen sahiplenilmeli
-  eng.combatEvent({ type: 'name', id: 7777, name: 'Player1' });
+  // 4. Doğru isimli karakterimiz (Player0, ID: 7777) geldiğinde hemen sahiplenilmeli
+  eng.combatEvent({ type: 'name', id: 7777, name: 'Player0' });
   if (eng.ownId !== 7777) {
-    errors.push(`Kayıtlı karakterimiz Player1 geldiğinde sahiplenilmedi (ownId: ${eng.ownId})`);
+    errors.push(`Kayıtlı karakterimiz Player0 geldiğinde sahiplenilmedi (ownId: ${eng.ownId})`);
   }
 
   return errors;
@@ -921,11 +921,11 @@ function testIdea1SelfOrPartyEngagement() {
     now: () => clock,
     idleMs: 8000,
     bossIdleMs: 45000,
-    charName: 'Player1',
+    charName: 'Player0',
   });
   m.setOwn(1000);
-  m.setName(1000, 'Player1');
-  m.setParty({ size: 2, dungeon: 0, members: ['Player1', 'Player2'] });
+  m.setName(1000, 'Player0');
+  m.setParty({ size: 2, dungeon: 0, members: ['Player0', 'Player2'] });
   m.setName(2000, 'Player2');
   m.targetInfo = (id) => {
     if (id === 8888) return { name: 'Rotten Kutar', code: 2100888, boss: true, max: 76600000, hp: 76600000 };
@@ -942,7 +942,7 @@ function testIdea1SelfOrPartyEngagement() {
     errors.push('Yabancı vuruşunda dövüş başladı (m.cur null olmalıydı)');
   }
 
-  // 2. Biz (Player1, 1000) boss'a ilk vuruşumuzu yapıyoruz (clock = 25000)
+  // 2. Biz (Player0, 1000) boss'a ilk vuruşumuzu yapıyoruz (clock = 25000)
   clock = 25000;
   m.damage({ t: clock, actor: 1000, target: 8888, skill: 14010000, damage: 100000, crit: true, back: false });
 
@@ -961,7 +961,7 @@ function testIdea1SelfOrPartyEngagement() {
       // gerçek vuranlar (yalnız biz) ve hasar vurmayan parti üyesinin sanal satırı ayrı doğrulanır
       const hitters = snap.enc.actors.filter((a) => !a.idle);
       const idle = snap.enc.actors.filter((a) => a.idle);
-      if (hitters.length !== 1 || hitters[0].name !== 'Player1') {
+      if (hitters.length !== 1 || hitters[0].name !== 'Player0') {
         errors.push(`Party aktörleri hatalı: ${JSON.stringify(hitters)}`);
       }
       if (idle.length !== 1 || idle[0].name !== 'Player2' || idle[0].total !== 0 || idle[0].id !== 'p:Player2') {
@@ -1010,8 +1010,8 @@ function testIdlePartyRows() {
   // kendi adımız bilinmiyor (ad paketi yok, karakter adı ayarı yok): kimlik 1000, sınıf 14
   m.setOwn(1000);
   m.setName(2000, 'Ally');
-  m.setParty({ size: 3, dungeon: 0, members: ['Player1', 'Ally', 'Idle1'], memberDetails: [
-    { name: 'Player1', cls: 14, server: 1301 }, { name: 'Ally', cls: 12, server: 1301 }, { name: 'Idle1', cls: 17, server: 2301 },
+  m.setParty({ size: 3, dungeon: 0, members: ['Player0', 'Ally', 'Idle1'], memberDetails: [
+    { name: 'Player0', cls: 14, server: 1301 }, { name: 'Ally', cls: 12, server: 1301 }, { name: 'Idle1', cls: 17, server: 2301 },
   ] });
   m.damage({ t: clock, actor: 1000, target: 8888, skill: 14010000, damage: 100000, crit: false, back: false });
   m.classes.set(1000, 14);
@@ -1022,8 +1022,8 @@ function testIdlePartyRows() {
   const acts = (s.enc && s.enc.actors) || [];
   const names = acts.map((a) => a.name);
   const own = acts.filter((a) => a.own);
-  if (own.length !== 1 || own[0].id !== 1000 || own[0].name !== 'Player1') errors.push(`kendi satırı parti listesinden adlanmadı / çift: ${JSON.stringify(own.map((a) => [a.id, a.name]))}`);
-  if (acts.some((a) => a.id === 'p:Player1')) errors.push('kendi karakter için ayrıca sanal satır eklendi (çift)');
+  if (own.length !== 1 || own[0].id !== 1000 || own[0].name !== 'Player0') errors.push(`kendi satırı parti listesinden adlanmadı / çift: ${JSON.stringify(own.map((a) => [a.id, a.name]))}`);
+  if (acts.some((a) => a.id === 'p:Player0')) errors.push('kendi karakter için ayrıca sanal satır eklendi (çift)');
   if (acts.some((a) => a.id === 'p:Ally') || names.filter((n) => n === 'Ally').length !== 1) errors.push('vuran parti üyesi çift eklendi');
   const idle = acts.find((a) => a.id === 'p:Idle1');
   if (!idle || !idle.idle || idle.total !== 0 || idle.dps !== 0 || idle.name !== 'Idle1' || idle.cls !== 17 || idle.server !== 2301 || idle.own || (idle.skills || []).length) {
@@ -1037,19 +1037,19 @@ function testIdlePartyRows() {
   if ([...m.cur.actors.keys()].some((k) => typeof k === 'string')) errors.push('sanal satır dövüş kaydına (e.actors) sızdı');
 
   // belirsiz: aynı sınıftan adı görülmemiş iki üye → kendi satırı adlanmaz, ikisi de sanal eklenmez (biri biz olabiliriz)
-  m.setParty({ size: 4, dungeon: 0, members: ['Player1', 'Twin', 'Ally', 'Idle1'], memberDetails: [
-    { name: 'Player1', cls: 14 }, { name: 'Twin', cls: 14 }, { name: 'Ally', cls: 12 }, { name: 'Idle1', cls: 17 },
+  m.setParty({ size: 4, dungeon: 0, members: ['Player0', 'Twin', 'Ally', 'Idle1'], memberDetails: [
+    { name: 'Player0', cls: 14 }, { name: 'Twin', cls: 14 }, { name: 'Ally', cls: 12 }, { name: 'Idle1', cls: 17 },
   ] });
   const sa = m.snapshot(0, { view: 'all' }).enc.actors;
   const ownA = sa.find((a) => a.id === 1000);
-  if (!ownA || !ownA.own || ownA.name === 'Player1' || ownA.name === 'Twin') errors.push(`belirsiz durumda kendi satırı tahminle adlandı: ${ownA && ownA.name}`);
-  if (sa.some((a) => a.id === 'p:Player1' || a.id === 'p:Twin')) errors.push('belirsiz durumda kendi sınıfımızdaki üyeler sanal eklendi (çift olabilir)');
+  if (!ownA || !ownA.own || ownA.name === 'Player0' || ownA.name === 'Twin') errors.push(`belirsiz durumda kendi satırı tahminle adlandı: ${ownA && ownA.name}`);
+  if (sa.some((a) => a.id === 'p:Player0' || a.id === 'p:Twin')) errors.push('belirsiz durumda kendi sınıfımızdaki üyeler sanal eklendi (çift olabilir)');
   if (!sa.some((a) => a.id === 'p:Idle1')) errors.push('belirsiz durumda başka sınıftaki üye eklenmedi');
 
   // karakter adı ayarlı: kendi adımız sanal satır olmaz (kendi satırı zaten var)
-  m.setCharName('Player1');
+  m.setCharName('Player0');
   const sc = m.snapshot(0, { view: 'all' }).enc.actors;
-  if (sc.filter((a) => a.own).length !== 1 || sc.some((a) => a.id === 'p:Player1')) errors.push(`karakter adı ayarlıyken kendi satırı çift: ${JSON.stringify(sc.map((a) => a.name))}`);
+  if (sc.filter((a) => a.own).length !== 1 || sc.some((a) => a.id === 'p:Player0')) errors.push(`karakter adı ayarlıyken kendi satırı çift: ${JSON.stringify(sc.map((a) => a.name))}`);
 
   // dövüş bitince (geçmiş/donmuş) sanal satır yok
   clock += 20000;
@@ -1078,10 +1078,10 @@ function testBossSegments() {
     now: () => clock,
     idleMs: 8000,
     bossIdleMs: 45000,
-    charName: 'Player1',
+    charName: 'Player0',
   });
   m.setOwn(1000);
-  m.setName(1000, 'Player1');
+  m.setName(1000, 'Player0');
   m.targetInfo = (id) => {
     if (id === 5555) return { name: 'Kernon of the West', code: 215555, boss: true, max: 80000000, hp: 80000000 };
     return null;
@@ -1173,10 +1173,10 @@ function testBackgroundBossProtection() {
     now: () => clock,
     idleMs: 8000,
     bossIdleMs: 45000,
-    charName: 'Player1',
+    charName: 'Player0',
   });
   m.setOwn(13612);
-  m.setName(13612, 'Player1');
+  m.setName(13612, 'Player0');
   m.targetInfo = (id) => {
     if (id === 52099) return { name: 'Bloodfang Pryn', code: 2105209, boss: true, max: 160000000, hp: 160000000 };
     if (id === 50675) return { name: 'Forest Agrint', code: 101, boss: false, max: 100000, hp: 100000 };
@@ -1290,7 +1290,7 @@ function testClassVotesAndHeals() {
   const eng = new Engine({ now: () => clock, setTimer: () => 0, clearTimer: () => 0, onEvent: () => {} });
   const ME = 12943, SHERKL = 9161, MOB = 38983;
   eng.pickOwn(ME, 'elle', 'test');
-  eng.meter.setName(ME, 'Player1');
+  eng.meter.setName(ME, 'Player0');
   eng.meter.setName(SHERKL, 'Sherkl');
   // Gerçek kayıttaki gibi: Sherkl'in parti buff'ı (Sprint Mantra, Chanter 18xxxxxx) BİZİM kimliğimizle tür 00 gelir, hem de ilk olay olarak
   eng.combatEvent({ type: 'cast', t: clock, actor: ME, skill: 18030000, kind: 0 });
@@ -1443,11 +1443,11 @@ function testFaz6() {
   const drawerHtml = fs.readFileSync(path.join(root, 'ui', 'drawer.html'), 'utf8');
   const drawerJs = fs.readFileSync(path.join(root, 'ui', 'drawer.js'), 'utf8');
   const panelJs = fs.readFileSync(path.join(root, 'ui', 'panel.js'), 'utf8');
-  if (!/showGS: true,/.test(mainSrc) || !/showCP: true,/.test(mainSrc)) errors.push('6.2b: varsayılan açık değil');
+  if (!/showGS: false,/.test(mainSrc) || !/showCP: false,/.test(mainSrc)) errors.push('6.2b: varsayılan kapalı değil');
   if (!/id="showGS"/.test(drawerHtml) || !/id="showCP"/.test(drawerHtml)) errors.push('6.2b: çekmecede aç/kapa yok');
   if (!/'showGS', 'showCP'/.test(drawerJs)) errors.push('6.2b: çekmece ayarı kaydetmiyor');
-  if (!/ui\.showGS !== false && a\.gs/.test(panelJs) || !/ui\.showCP !== false && typeof a\.cp === 'number'/.test(panelJs)) errors.push('6.2b: panel ayara bakmıyor');
-  if (!/showGS: settings\.showGS !== false, showCP: settings\.showCP !== false/.test(mainSrc)) errors.push('6.2b: ayar panele gitmiyor');
+  if (!/ui\.showGS === true && a\.gs/.test(panelJs) || !/ui\.showCP === true && typeof a\.cp === 'number'/.test(panelJs)) errors.push('6.2b: panel ayara bakmıyor');
+  if (!/showGS: settings\.showGS === true, showCP: settings\.showCP === true/.test(mainSrc)) errors.push('6.2b: ayar panele gitmiyor');
   return errors;
 }
 
@@ -1504,10 +1504,10 @@ function testMeterV2() {
   const eng = new Engine({ now: () => clock, setTimer: () => 0, clearTimer: () => 0, onEvent: () => {} });
   const ME = 32, CLE = 3381, MOB = 45000, BOSS = 17056, SUM = 19209;
   eng.pickOwn(ME, 'elle', 'test');
-  eng.meter.setName(ME, 'Player1');
+  eng.meter.setName(ME, 'Player0');
   eng.meter.setName(CLE, 'Player6');
   // 0x0297: şablon 30 → Cleric (oylama yok)
-  eng.combatEvent({ type: 'party', size: 2, dungeon: 1, members: ['Player1', 'Player6'], memberDetails: [{ name: 'Player1', cls: 14 }, { name: 'Player6', cls: 17 }] });
+  eng.combatEvent({ type: 'party', size: 2, dungeon: 1, members: ['Player0', 'Player6'], memberDetails: [{ name: 'Player0', cls: 14 }, { name: 'Player6', cls: 17 }] });
   if (eng.meter.classes.get(CLE) !== 17) errors.push('parti şablonu sınıfı uygulanmadı');
   eng.combatEvent({ type: 'cast', t: clock, actor: CLE, skill: 18030000, kind: 0 }); // başkasının buff'ı sınıfı değiştirmemeli
   if (eng.meter.classes.get(CLE) !== 17) errors.push('kesin sınıf oylamayla ezildi');
@@ -1568,7 +1568,7 @@ function testMeterV2() {
   const b = eng.meter.snapshot(0, { view: 'all' }).enc.boss;
   if (!b || !b.stagger || b.stagger.breaks !== 1 || b.stagger.burstDmg !== 2500 || b.stagger.broken) errors.push('kırılma göstergesi yanlış: ' + JSON.stringify(b && b.stagger));
   // B-38 / B-34: doğma paketi gelen 20000 altı kimlik oyuncu sayılmaz; adlı doğma sahibin satırına eklenir
-  eng.combatEvent({ type: 'spawn', t: clock, id: SUM, code: 2920626, maxHp: 17647, curHp: 17647, alive: true, owner: 'Player1' });
+  eng.combatEvent({ type: 'spawn', t: clock, id: SUM, code: 2920626, maxHp: 17647, curHp: 17647, alive: true, owner: 'Player0' });
   eng.combatEvent({ type: 'damage', t: clock + 30, actor: SUM, target: BOSS, skill: 14800001, damage: 700 });
   if (eng.meter.isKnownPlayer(SUM)) errors.push('çağrı kimliği oyuncu sayıldı (B-34)');
   const s3 = eng.meter.snapshot(0, { view: 'all', bossView: false }).enc;
@@ -1806,14 +1806,14 @@ function testOwnAliasMerge() {
   const { OwnTracker } = require('../lib/owner');
   const errors = [];
   let clock = 1000;
-  const eng = new Engine({ now: () => clock, setTimer: () => ({}), clearTimer() {}, cdConfig: {}, onEvent: () => {}, charName: 'Player1' });
+  const eng = new Engine({ now: () => clock, setTimer: () => ({}), clearTimer() {}, cdConfig: {}, onEvent: () => {}, charName: 'Player0' });
   const m = eng.meter;
   const ledger = [];
   m.onBossRecord = (r) => ledger.push(r);
   const ev = (e) => eng.combatEvent(e);
-  const party = ['Player1', 'Player3', 'Archmage', 'Player4', 'Player5'];
+  const party = ['Player0', 'Player3', 'Archmage', 'Player4', 'Player5'];
   ev({ type: 'party', size: 5, dungeon: 600011, members: party });
-  ev({ type: 'name', id: 13720, name: 'Player1' });
+  ev({ type: 'name', id: 13720, name: 'Player0' });
   [201, 202, 203, 204].forEach((id, i) => ev({ type: 'name', id, name: party[i + 1] }));
   if (eng.ownId !== 13720) errors.push('ad paketiyle kendi kimlik 13720 seçilmeliydi: ' + eng.ownId);
   const hit = (actor, dmg, t) => ev({ type: 'damage', t, actor, target: 900, skill: 14010000, damage: dmg });
@@ -1824,7 +1824,7 @@ function testOwnAliasMerge() {
   m.finish();
   // 2. zindan yeniden girişi: sunucu yeni oturum kimliği verdi
   clock += 20000;
-  ev({ type: 'name', id: 12144, name: 'Player1' });
+  ev({ type: 'name', id: 12144, name: 'Player0' });
   if (eng.ownId !== 12144) errors.push('yeni kimlik 12144 seçilmeliydi: ' + eng.ownId);
   const h0 = m.snapshot(0, {}).enc;
   if (!h0) errors.push('biten dövüş bulunamadı');
@@ -1832,7 +1832,7 @@ function testOwnAliasMerge() {
     if (h0.actors.length !== 5) errors.push('biten dövüşte oyuncu sayısı ' + h0.actors.length + ' (5 olmalı): ' + h0.actors.map((a) => a.name).join(','));
     if (h0.actors.some((a) => /#13720$/.test(a.name))) errors.push('eski kimlik "Player #13720" satırı kaldı');
     const me = h0.actors.filter((a) => a.own);
-    if (me.length !== 1 || me[0].name !== 'Player1' || me[0].total !== 5000) errors.push('kendi satırı adıyla ve hasarıyla tek olmalı: ' + JSON.stringify(me.map((a) => [a.name, a.total])));
+    if (me.length !== 1 || me[0].name !== 'Player0' || me[0].total !== 5000) errors.push('kendi satırı adıyla ve hasarıyla tek olmalı: ' + JSON.stringify(me.map((a) => [a.name, a.total])));
   }
   // 3. aynı boss'a 90 sn içinde yeni kimlikle devam: birleşen boss kaydında 6 değil 5 kişi
   m.cur = m.newEncounter(clock);
@@ -1843,11 +1843,11 @@ function testOwnAliasMerge() {
   const b = m.snapshot(0, { boss: 0, bossView: true }).enc;
   if (!b || b.actors.length !== 5) errors.push('boss raporunda oyuncu sayısı ' + (b && b.actors.length) + ' (5 olmalı): ' + (b ? b.actors.map((a) => a.name).join(',') : ''));
   else {
-    const me = b.actors.filter((a) => a.own || a.name === 'Player1');
+    const me = b.actors.filter((a) => a.own || a.name === 'Player0');
     if (me.length !== 1 || me[0].total !== 12000 || !me[0].own) errors.push('boss raporunda kendi satırı 12000 hasarla tek olmalı: ' + JSON.stringify(me.map((a) => [a.name, a.total, a.own])));
   }
   const last = ledger[ledger.length - 1];
-  if (!last || last.actors.length !== 5 || last.actors.filter((a) => a.name === 'Player1').length !== 1) errors.push('oyuncu defterine giden liste çift kişi içermemeli: ' + (last ? last.actors.map((a) => a.name).join(',') : 'yok'));
+  if (!last || last.actors.length !== 5 || last.actors.filter((a) => a.name === 'Player0').length !== 1) errors.push('oyuncu defterine giden liste çift kişi içermemeli: ' + (last ? last.actors.map((a) => a.name).join(',') : 'yok'));
   // 4. tahmini (eşleşme) kimlik başka biri çıkarsa sonraki kesin seçimde bize birleştirilmez
   m.cur = m.newEncounter(clock + 200000);
   clock += 200000;
@@ -1855,7 +1855,7 @@ function testOwnAliasMerge() {
   eng.pickOwn(777, 'eşleşme', 'test tahmini');
   ev({ type: 'name', id: 777, name: 'Bob' }); // gerçek adı geldi: başkası
   m.finish();
-  ev({ type: 'name', id: 15000, name: 'Player1' });
+  ev({ type: 'name', id: 15000, name: 'Player0' });
   const h1 = m.snapshot(0, {}).enc;
   const bob = h1 && h1.actors.find((a) => a.name === 'Bob');
   if (!bob || bob.own || bob.total !== 3333) errors.push('başkası çıkan tahmini kimlik bize birleştirilmemeli: ' + (h1 ? JSON.stringify(h1.actors.map((a) => [a.name, a.total, a.own])) : 'yok'));
@@ -1908,7 +1908,7 @@ function testOwnAliasMerge() {
   if (!fz.files) { skip++; console.log('ATLANDI  tekrar oynatma (fuzz) (yerel kayıt gerekli)'); }
   else if (fz.errors.length) { fail++; console.log(`HATA     tekrar oynatma (fuzz): ${fz.errors.slice(0, 8).join(' | ')}`); }
   else { pass++; console.log(`TAMAM    tekrar oynatma (fuzz): ${fz.files} kayıt, ${fz.frames} çerçeve; istisna 0, çözücü hatası 0, NaN/sonsuz 0 ✓`); }
-  for (const [name, fn] of [...require('./test-yeni'), ...require('./test-parti'), ...require('./test-zindan'), ...require('./test-cekmece'), ...require('./test-ayarlar'), ...require('./test-asama3'), ...require('./test-madde'), ...require('./test-ortada'), ...require('./test-kimlik')]) {
+  for (const [name, fn] of [...require('./test-yeni'), ...require('./test-parti'), ...require('./test-zindan'), ...require('./test-cekmece'), ...require('./test-ayarlar'), ...require('./test-asama3'), ...require('./test-madde'), ...require('./test-ortada'), ...require('./test-kimlik'), ...require('./test-bolge')]) {
     let e; try { e = await fn(); } catch (x) { e = ['istisna: ' + (x && x.stack)]; }
     if (e && e.skip) { skip++; console.log(`ATLANDI  yeni birim: ${name} (yerel kayıt gerekli)`); continue; }
     if (e.length) { fail++; console.log(`HATA     yeni birim: ${name}: ${e.join(' | ')}`); } else { pass++; console.log(`TAMAM    yeni birim: ${name} ✓`); }

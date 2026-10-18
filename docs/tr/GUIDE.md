@@ -1,4 +1,4 @@
-# Daeva Lens 2.2.0 · Kullanıcı Kılavuzu
+# Daeva Lens 2.2.1 · Kullanıcı Kılavuzu
 
 Türkçe · English: [GUIDE.md](../../GUIDE.md)
 

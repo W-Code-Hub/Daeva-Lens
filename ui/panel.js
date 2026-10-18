@@ -201,14 +201,14 @@ $('logo').addEventListener('load', () => squeezeBar(true));
 // hedefin canı (008d) ve bu hızla kaç saniyede öleceği
 function renderFocus(e) {
   try {
-    const show = !state || !state.ui || state.ui.showTarget !== false;
+    const show = !state || !state.ui || state.ui.showTarget === true;
     const f = (show && e && e.live && e.focus && e.focus.hp !== 0) ? e.focus : null; // ölen veya kapatılan hedef gizlenir
     const box = $('focus');
     if (!box) return;
     box.hidden = !f;
     if (!f) return;
     $('fName').innerHTML = esc(f.name || t('Target')) + (f.boss ? '<span class="boss">BOSS</span>' : '')
-      + ((f.boss && e.boss && e.boss.target && (!state || !state.ui || state.ui.bossTarget !== false)) ? '<span class="btarget">' + esc(t('Target')) + ': ' + esc(streamerOn() ? maskByName(e.boss.target) : e.boss.target) + '</span>' : '');
+      + ((f.boss && e.boss && e.boss.target && (!state || !state.ui || state.ui.bossTarget === true)) ? '<span class="btarget">' + esc(t('Target')) + ': ' + esc(streamerOn() ? maskByName(e.boss.target) : e.boss.target) + '</span>' : '');
     const p = (typeof f.max === 'number' && f.max > 0) ? Math.max(0, Math.min(1, f.hp / f.max)) : null;
     $('fPct').textContent = p === null ? '' : (p * 100).toFixed(p < 0.1 ? 1 : 0) + '%';
     $('fFill').style.width = p === null ? '0%' : (p * 100).toFixed(1) + '%';
@@ -563,8 +563,8 @@ function renderRows(e, maxRows) {
           // Faz 8.5: statik rozet kapları korunur; yalnız metin düğümleri/gizlilik güncellenir (DOM yeniden kurulmaz)
           const gsEl = gc.querySelector('.gc-gs');
           const cpEl = gc.querySelector('.gc-cp');
-          const showG = !!(gsEl && ui.showGS !== false && a.gs);
-          const showC = !!(cpEl && ui.showCP !== false && typeof a.cp === 'number' && a.cp > 0);
+          const showG = !!(gsEl && ui.showGS === true && a.gs);
+          const showC = !!(cpEl && ui.showCP === true && typeof a.cp === 'number' && a.cp > 0);
           if (gsEl) {
             gsEl.hidden = !showG;
             if (showG) {
@@ -838,7 +838,7 @@ function onAlert(a) {
   }
   const ttsText = a.tts || (typeof Sound !== 'undefined' && Sound.getAlertTts ? Sound.getAlertTts(a.kind) : a.name);
   Sound.play(snd, a.volume, (snd === 'oku' && ttsText) ? ttsText : a.name, a.kind);
-  const showVisual = a.visual !== false && (!state || !state.ui || state.ui.visualToasts !== false);
+  const showVisual = a.visual !== false && (!state || !state.ui || state.ui.visualToasts === true);
   if (a.kind === 'ready') {
     const el = cdEls.get(a.base);
     if (el) {

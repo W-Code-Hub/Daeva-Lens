@@ -1,6 +1,6 @@
 # Daeva Lens
 
-![Version](https://img.shields.io/badge/version-2.2.0-6366f1?style=for-the-badge) ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0ea5e9?style=for-the-badge) ![License](https://img.shields.io/badge/license-GPL--3.0-64748b?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.2.1-6366f1?style=for-the-badge) ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0ea5e9?style=for-the-badge) ![License](https://img.shields.io/badge/license-GPL--3.0-64748b?style=for-the-badge)
 
 **English** · Türkçe: [docs/tr/README.md](docs/tr/README.md)
 
@@ -33,6 +33,7 @@ _All images are the real interface, captured while replaying a local recorded te
 - **Skill rotation timeline:** per-player skill strip with zoom (wheel / +/- / Fit) and pan.
 - **Party display:** option to hide party members who are not dealing damage.
 - **Streamer mode:** names replaced with local aliases on screen.
+- **Quiet by default:** sounds, on-screen notices, event timers and the extra panels are off by default and can be turned on in Settings.
 
 ## Install
 
@@ -44,7 +45,7 @@ _All images are the real interface, captured while replaying a local recorded te
 **SmartScreen note:** the exe is not code-signed, so Windows may show "Windows protected your PC". Click **More info > Run anyway**. The exe is unsigned because a signing certificate costs money and this is a free hobby project. Antivirus tools may also give a false positive on unsigned programs. Free ways to build trust: you can scan the files on VirusTotal; you can report a false positive to Microsoft at <https://www.microsoft.com/wdsi/filesubmission>. To verify your download, first compare the zip with the `SHA256SUMS.txt` file on the release page:
 
 ```
-certutil -hashfile "Daeva-Lens-v2.2.0-win-x64.zip" SHA256
+certutil -hashfile "Daeva-Lens-v2.2.1-win-x64.zip" SHA256
 ```
 
 Then, after extracting the zip, compare `Daeva Lens.exe` with the matching line in the `SHA256SUMS.txt` file inside the extracted folder:

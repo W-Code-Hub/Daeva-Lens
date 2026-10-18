@@ -1,6 +1,26 @@
-# Daeva Lens 2.2.0 · Release Notes
+# Daeva Lens 2.2.1 · Release Notes
 
 English · Türkçe: [docs/tr/CHANGELOG.md](docs/tr/CHANGELOG.md)
+
+## 2.2.1
+
+Fixes
+- Panel moving and position lock: dragging and the lock now work reliably.
+- The meter no longer stays empty after a zone change.
+- Errors that were swallowed silently are now written to the log.
+- A lost network packet no longer stalls reading; it is skipped after about half a second.
+- Ctrl+R boss reset behaves the same way everywhere.
+
+Changed
+- Sounds, on-screen notices, event timers and the extra panels (cooldowns, target bar, Gear Score, Combat Power, idle party members, boss target) are off by default. Turn them on in Settings. Existing settings are kept as they are.
+- The README explains the unsigned-exe warning and how to check the SHA256.
+- Six new automated tests.
+
+Daeva Lens does not touch the game; it only reads a passive copy of network traffic. Screen-capture protection is off by default.
+
+---
+
+# Daeva Lens 2.2.0 · Release Notes
 
 Changes since 2.1.0.
 

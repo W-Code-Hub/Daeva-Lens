@@ -20,7 +20,7 @@ function maddeTests() {
   ok(/#menu button i\b/.test(PC) && PC.includes('#menu button.danger:hover'), 'menü stili uygulama stiline uyar');
   ok(/'Blacklist': /.test(I18N) && /'Remove from blacklist': /.test(I18N), 'Blacklist çevirileri var');
   // 3) Hasar vurmayan üyeler
-  ok(/showIdleParty: true/.test(MAIN) && MAIN.includes("'showIdleParty'") && MAIN.includes('showIdle: settings.showIdleParty !== false'), 'showIdleParty varsayılan açık, doğrulanır, meter\'a geçer');
+  ok(/showIdleParty: false/.test(MAIN) && MAIN.includes("'showIdleParty'") && MAIN.includes('showIdle: settings.showIdleParty === true'), 'showIdleParty varsayılan kapalı, doğrulanır, meter\'a geçer');
   ok(DH.includes('id="showIdleParty"') && DJ.includes("'showIdleParty'") && DJ.includes("$('showIdleParty').checked"), 'showIdleParty arayüzü bağlı');
   ok(M.includes('opts.showIdle === false') && /Show non-damaging party members': '/.test(I18N), 'meter kapalıyken gizler; çeviri var');
   // 4) Türkçe zamanlayıcı okuma

@@ -31,9 +31,9 @@ function newEngine(clockRef) {
   eng.events2 = events;
   return eng;
 }
-const ME = { sid: 5000, dbid: 237513, name: 'Player1', server: 1301 };
-const P1 = { sid: 5001, dbid: 100001, name: 'Player2', server: 1301 };
-const P2 = { sid: 5002, dbid: 100002, name: 'Player3', server: 1302 };
+const ME = { sid: 5000, dbid: 237513, name: 'Player0', server: 1301 };
+const P1 = { sid: 5001, dbid: 100001, name: 'Player1', server: 1301 };
+const P2 = { sid: 5002, dbid: 100002, name: 'Player2', server: 1302 };
 const P3 = { sid: 0, dbid: 100003, name: 'Zero', server: 1301 }; // oturum kimliği henüz atanmamış
 const OP = { ROSTER: 0x0092, MEMBER: 0x2292, STATE: 0x1c92, LEAVE_A: 0x1d97, LEAVE_B: 0x1f93, ZONE: 0x8356 };
 
@@ -42,8 +42,8 @@ function rosterParseTests() {
   const { parseRosterMembers } = req('lib/combat.js');
   const ms = parseRosterMembers(rosterBody([ME, P1, P2, P3]));
   ok(ms.length === 4, 'dört üye bekleniyordu: ' + ms.length);
-  ok(ms[0].name === 'Player1' && ms[0].sid === 5000 && ms[0].dbid === 237513 && ms[0].server === 1301, 'ilk üye alanları: ' + JSON.stringify(ms[0]));
-  ok(ms[2].name === 'Player3' && ms[2].server === 1302, 'sunucu alanı');
+  ok(ms[0].name === 'Player0' && ms[0].sid === 5000 && ms[0].dbid === 237513 && ms[0].server === 1301, 'ilk üye alanları: ' + JSON.stringify(ms[0]));
+  ok(ms[2].name === 'Player2' && ms[2].server === 1302, 'sunucu alanı');
   ok(ms[3].name === 'Zero' && ms[3].sid === 0, 'oturum kimliği 0 olan üye de kadroda (kimlik sonra gelir)');
   ok(parseRosterMembers(Buffer.alloc(300, 7)).length === 0, 'çöp veri üye üretmemeli');
   ok(parseRosterMembers(rosterBody([ME]).subarray(0, 40)).length === 0, 'kesik paket üye üretmemeli');
@@ -61,22 +61,22 @@ function rosterNamesTests() {
   eng.combat.frame(OP.ZONE, Buffer.alloc(39000), c.t);
   c.t += 300;
   eng.combat.frame(OP.ROSTER, rosterBody([ME, P1, P2, P3]), c.t);
-  ok(eng.meter.names.get(5001) === 'Player2' && eng.meter.names.get(5002) === 'Player3', 'oturum kimliği → ad (meter.names)');
-  ok(eng.meter.names.get(5000) === 'Player1', 'kendi satırımızın adı kadrodan');
-  ok(eng.meter.label(5001) === 'Player2', 'etiket "Sınıf #id" değil gerçek ad');
+  ok(eng.meter.names.get(5001) === 'Player1' && eng.meter.names.get(5002) === 'Player2', 'oturum kimliği → ad (meter.names)');
+  ok(eng.meter.names.get(5000) === 'Player0', 'kendi satırımızın adı kadrodan');
+  ok(eng.meter.label(5001) === 'Player1', 'etiket "Sınıf #id" değil gerçek ad');
   ok(eng.group.live && eng.group.via === 'roster' && eng.meter.inGroup, 'kadro ≥2 → partideyim');
   ok(eng.meter.party && eng.meter.party.members.has('Zero'), 'kimliksiz üye de parti adları arasında');
   ok(eng.meter.instanceOn, 'bölge yüklemesiyle birlikte gelen kadro = gerçek zindan içi');
-  ok(eng.globalNames.get(237513) === 'Player1' && eng.globalNames.get(100003) === 'Zero', 'küresel kimlik → ad tablosu kadrodan da dolar');
-  ok(eng.meter.partyServer.get('Player3') === 1302, 'sunucu numarası kadrodan erken gelir');
+  ok(eng.globalNames.get(237513) === 'Player0' && eng.globalNames.get(100003) === 'Zero', 'küresel kimlik → ad tablosu kadrodan da dolar');
+  ok(eng.meter.partyServer.get('Player2') === 1302, 'sunucu numarası kadrodan erken gelir');
   // sonradan 0x2292: Zero'nun oturum kimliği gelir
   c.t += 500;
   eng.combat.frame(OP.MEMBER, memberBody({ sid: 5003, dbid: 100003, name: 'Zero', server: 1301 }), c.t);
   ok(eng.meter.names.get(5003) === 'Zero', '0x2292 ile gelen oturum kimliği ada bağlanır');
   // oturum kimliği eskiden bir canavara ait sayılmışsa kadro onu oyuncu yapar
   eng.meter.noteNpc(5009, c.t);
-  eng.combat.frame(OP.MEMBER, memberBody({ sid: 5009, dbid: 100009, name: 'Player6' }), c.t);
-  ok(!eng.meter.npcIds.has(5009) && eng.meter.names.get(5009) === 'Player6', 'kadrodaki oyuncu canavar listesinden çıkar');
+  eng.combat.frame(OP.MEMBER, memberBody({ sid: 5009, dbid: 100009, name: 'Player5' }), c.t);
+  ok(!eng.meter.npcIds.has(5009) && eng.meter.names.get(5009) === 'Player5', 'kadrodaki oyuncu canavar listesinden çıkar');
   return errors;
 }
 
@@ -100,11 +100,11 @@ function stalePartyTests() {
   eng.combat.frame(OP.ZONE, Buffer.alloc(39000), c.t);
   eng.combat.frame(OP.ROSTER, rosterBody([ME, P1, P2]), c.t + 100);
   c.t += 200;
-  // dövüş: ben + Player2 vurur, Player3 vurmaz; yabancı 7777 (kadroda yok)
+  // dövüş: ben + Player1 vurur, Player2 vurmaz; yabancı 7777 (kadroda yok)
   eng.meter.setName(7777, 'Stranger');
   for (const [id, d] of [[5000, 900], [5001, 500], [7777, 400]]) eng.combatEvent({ type: 'damage', t: c.t, actor: id, target: 90001, skill: 14010000, damage: d });
   let rows = eng.meter.snapshot(0, { view: 'party', bossView: false }).enc.actors.map((a) => a.name);
-  ok(rows.includes('Player1') && rows.includes('Player2') && rows.includes('Player3'), 'parti görünümü: kadro (hasar vurmayan 0 ile): ' + rows.join());
+  ok(rows.includes('Player0') && rows.includes('Player1') && rows.includes('Player2'), 'parti görünümü: kadro (hasar vurmayan 0 ile): ' + rows.join());
   ok(!rows.includes('Stranger'), 'adı bilinen ama kadroda olmayan yabancı zindanda bile parti görünümüne girmez: ' + rows.join());
   // ayrılma bildirimi: parti biter, sanal satır ve parti süzgeci kalmaz
   c.t += 1000;
@@ -115,9 +115,9 @@ function stalePartyTests() {
   ok(!rows.some((id) => typeof id === 'string'), 'bayat parti sanal ("p:") satır üretmez');
   // 0x0297 (zindan ilanı) gelse de parti DİRİLMEZ: yalnız bilgi
   const { parseParty } = req('lib/combat.js');
-  eng.combatEvent({ type: 'party', size: 5, dungeon: 600092, members: ['Player1', 'Player2'], memberDetails: [{ name: 'Player2', globalId: 100001, server: 1301, level: 50, gearScore: 2000, combatPower: 50000, cls: 13 }] });
+  eng.combatEvent({ type: 'party', size: 5, dungeon: 600092, members: ['Player0', 'Player1'], memberDetails: [{ name: 'Player1', globalId: 100001, server: 1301, level: 50, gearScore: 2000, combatPower: 50000, cls: 13 }] });
   ok(!eng.group.live && eng.meter.party === null && !eng.meter.inGroup, '0x0297 ilanı üyelik kanıtı değil');
-  ok(eng.meter.partyCls.get('Player2') === 13 && eng.meter.memberStats('p:Player2').gs === 2000, '0x0297 yine de ad/sınıf/GS bilgisi sağlar');
+  ok(eng.meter.partyCls.get('Player1') === 13 && eng.meter.memberStats('p:Player1').gs === 2000, '0x0297 yine de ad/sınıf/GS bilgisi sağlar');
   ok(typeof parseParty === 'function', 'parseParty duruyor');
   // ayrılmadan hemen sonra uçuştaki durum paketi partiyi diriltmez; 3 sn sonrası yeni akış diriltir
   const st = Buffer.alloc(64); st.writeUInt32LE(100001, 0);
@@ -189,22 +189,22 @@ function stateOnlyTests() {
   const c = { t: 1000000 };
   const eng = newEngine(c);
   eng.pickOwn(5000, 'elle', 'test');
-  eng.charName = 'Player1';
+  eng.charName = 'Player0';
   // program zindan ortasında açıldı: kadro paketi kaçırıldı; 0x0297 ilanı ve üye durum akışı var
-  eng.combatEvent({ type: 'party', t: c.t, size: 5, dungeon: 600092, members: ['Player1', 'Player2', 'Player3'], memberDetails: [
-    { name: 'Player1', globalId: 237513, server: 1301, level: 50, gearScore: 3000, combatPower: 90000, cls: 13 },
-    { name: 'Player2', globalId: 100001, server: 1301, level: 50, gearScore: 2800, combatPower: 80000, cls: 11 },
-    { name: 'Player3', globalId: 100002, server: 1302, level: 50, gearScore: 2700, combatPower: 70000, cls: 15 }] });
+  eng.combatEvent({ type: 'party', t: c.t, size: 5, dungeon: 600092, members: ['Player0', 'Player1', 'Player2'], memberDetails: [
+    { name: 'Player0', globalId: 237513, server: 1301, level: 50, gearScore: 3000, combatPower: 90000, cls: 13 },
+    { name: 'Player1', globalId: 100001, server: 1301, level: 50, gearScore: 2800, combatPower: 80000, cls: 11 },
+    { name: 'Player2', globalId: 100002, server: 1302, level: 50, gearScore: 2700, combatPower: 70000, cls: 15 }] });
   ok(!eng.group.live && eng.meter.party === null, '0x0297 tek başına parti kurmaz');
   const st = (db) => { const b = Buffer.alloc(64); b.writeUInt32LE(db, 0); return b; };
   eng.combat.frame(OP.STATE, st(100001), c.t);
   ok(eng.group.live && eng.group.via === 'state', 'üye durum akışı → partideyim');
   eng.combat.frame(OP.STATE, st(100002), c.t + 100);
-  ok(eng.meter.party.members.has('Player2') && eng.meter.party.members.has('Player3'), 'adlar 0x0297 küresel kimliğinden çözülür: ' + [...eng.meter.party.members]);
+  ok(eng.meter.party.members.has('Player1') && eng.meter.party.members.has('Player2'), 'adlar 0x0297 küresel kimliğinden çözülür: ' + [...eng.meter.party.members]);
   ok(eng.meter.instanceOn, 'taze zindan ilanı + durum akışı → zindan içi');
   // kendi küresel kimliğimizin durum paketi tek başına parti kurmaz
   const e2 = newEngine({ t: 5 });
-  e2.charName = 'Player1';
+  e2.charName = 'Player0';
   e2.combatEvent({ type: 'global-link', t: 5, sessionId: 5000, globalId: 237513 });
   e2.combat.frame(OP.STATE, st(237513), 5);
   ok(!e2.group.live, 'yalnız kendi durumum → parti yok');
@@ -219,7 +219,7 @@ function autoViewTests() {
   const c = { t: 1000 };
   const eng = newEngine(c);
   eng.pickOwn(5000, 'elle', 'test');
-  eng.meter.setName(5000, 'Player1');
+  eng.meter.setName(5000, 'Player0');
   ok(!eng.meter.inGroup, 'partide değilken inGroup false (auto → yalnız ben)');
   ok(/effView = engine\.meter\.inGroup \? 'party' : 'me';/.test(MAIN_SRC), "main.js 'auto' kuralı: parti → party, değilse → me (boss dövüşünde 'all' yok)");
   ok(!/isBossFight \? 'all' : 'me'/.test(MAIN_SRC), "eski 'boss'ta herkes' kuralı kalmadı");
@@ -228,11 +228,11 @@ function autoViewTests() {
   eng.meter.setName(7002, 'Alia');
   for (const [id, d] of [[5000, 1000], [7001, 5000], [7002, 4000]]) eng.combatEvent({ type: 'damage', t: c.t, actor: id, target: 90001, skill: 14010000, damage: d });
   const me = eng.meter.snapshot(0, { view: 'me', bossView: false }).enc.actors.map((a) => a.name);
-  ok(me.length === 1 && me[0] === 'Player1', "'me' görünümü yalnız ben: " + me.join());
+  ok(me.length === 1 && me[0] === 'Player0', "'me' görünümü yalnız ben: " + me.join());
   // partideyken 'party': kadro + 0 hasarlı üyeler; 'all' hepsi
   eng.combat.frame(OP.ROSTER, rosterBody([ME, P1, P2]), c.t + 10);
   const party = eng.meter.snapshot(0, { view: 'party', bossView: false }).enc.actors.map((a) => a.name).sort();
-  ok(party.join() === 'Player1,Player2,Player3', "'party' görünümü kadro (vurmayanlar 0 ile), yabancı yok: " + party.join());
+  ok(party.join() === 'Player0,Player1,Player2', "'party' görünümü kadro (vurmayanlar 0 ile), yabancı yok: " + party.join());
   const all = eng.meter.snapshot(0, { view: 'all', bossView: false }).enc.actors.map((a) => a.name);
   ok(all.includes('Stranger1') && all.includes('Alia'), "'all' görünümü hâlâ herkesi gösterir");
   return errors;
@@ -262,7 +262,7 @@ function loadPartyTests() {
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
   // motor tarafı: yüklenen bayat bilgi parti kurmaz
   const eng = newEngine({ t: 1 });
-  eng.meter.setParty({ size: 5, dungeon: 600092, members: ['Player2', 'Player3'] }, { info: true });
+  eng.meter.setParty({ size: 5, dungeon: 600092, members: ['Player1', 'Player2'] }, { info: true });
   ok(eng.meter.party === null && !eng.meter.inGroup, 'bilgi-modu setParty parti kurmaz');
   return errors;
 }
@@ -272,13 +272,13 @@ function inferTests() {
   const c = { t: 1000 };
   const eng = newEngine(c);
   eng.pickOwn(5000, 'elle', 'test');
-  eng.meter.setName(5000, 'Player1');
+  eng.meter.setName(5000, 'Player0');
   eng.meter.classes.set(5000, 14);
   // program zindan ortasında açıldı: kadro yok, durum akışı + ilan var; satırlar adsız ("Gladiator #10719")
-  eng.combatEvent({ type: 'party', t: c.t, size: 5, dungeon: 600092, members: ['Player1', 'Player2', 'Player3', 'Zero'], memberDetails: [
-    { name: 'Player1', globalId: 237513, server: 1301, gearScore: 3000, combatPower: 9e4, cls: 14 },
-    { name: 'Player2', globalId: 100001, server: 1301, gearScore: 2800, combatPower: 8e4, cls: 5 },
-    { name: 'Player3', globalId: 100002, server: 1302, gearScore: 2700, combatPower: 7e4, cls: 13 },
+  eng.combatEvent({ type: 'party', t: c.t, size: 5, dungeon: 600092, members: ['Player0', 'Player1', 'Player2', 'Zero'], memberDetails: [
+    { name: 'Player0', globalId: 237513, server: 1301, gearScore: 3000, combatPower: 9e4, cls: 14 },
+    { name: 'Player1', globalId: 100001, server: 1301, gearScore: 2800, combatPower: 8e4, cls: 5 },
+    { name: 'Player2', globalId: 100002, server: 1302, gearScore: 2700, combatPower: 7e4, cls: 13 },
     { name: 'Zero', globalId: 100003, server: 1301, gearScore: 2600, combatPower: 6e4, cls: 15 }] });
   const st = (db) => { const b = Buffer.alloc(64); b.writeUInt32LE(db, 0); return b; };
   for (const db of [100001, 100002, 100003]) eng.combat.frame(OP.STATE, st(db), c.t);
@@ -287,15 +287,15 @@ function inferTests() {
   eng.meter.classes.set(10719, 5); eng.meter.classes.set(9359, 13); eng.meter.classes.set(3685, 15); // sınıflar beceri oylamasıyla bulunur (burada elle)
   const a1 = eng.meter.snapshot(0, { view: 'party', bossView: false }).enc.actors;
   const nm = Object.fromEntries(a1.map((a) => [a.id, a.name]));
-  ok(nm[10719] === 'Player2' && nm[9359] === 'Player3' && nm[3685] === 'Zero', 'sınıfı tek aday olan adsız satırlar adlanır: ' + JSON.stringify(nm));
+  ok(nm[10719] === 'Player1' && nm[9359] === 'Player2' && nm[3685] === 'Zero', 'sınıfı tek aday olan adsız satırlar adlanır: ' + JSON.stringify(nm));
   ok(!a1.some((a) => typeof a.id === 'string'), 'çözülen üye için ayrıca 0 hasarlı sanal satır eklenmez (isim ↔ DPS uyuşmaz hatası)');
   ok(!eng.meter.names.has(10719), 'çıkarım ad haritasına YAZILMAZ (yalnız gösterim)');
   // belirsiz: iki adaylı aynı sınıf → tahmin yok
   const c2 = { t: 1 };
   const e2 = newEngine(c2);
-  e2.pickOwn(5000, 'elle', 'test'); e2.meter.setName(5000, 'Player1');
-  e2.combatEvent({ type: 'party', t: 1, size: 3, dungeon: 1, members: ['Player1', 'Player2', 'Zero'], memberDetails: [
-    { name: 'Player2', globalId: 1, server: 1301, cls: 5 }, { name: 'Zero', globalId: 2, server: 1301, cls: 5 }] });
+  e2.pickOwn(5000, 'elle', 'test'); e2.meter.setName(5000, 'Player0');
+  e2.combatEvent({ type: 'party', t: 1, size: 3, dungeon: 1, members: ['Player0', 'Player1', 'Zero'], memberDetails: [
+    { name: 'Player1', globalId: 1, server: 1301, cls: 5 }, { name: 'Zero', globalId: 2, server: 1301, cls: 5 }] });
   for (const db of [1, 2]) e2.combat.frame(OP.STATE, st(db), 1);
   e2.combatEvent({ type: 'damage', t: 1, actor: 5000, target: 90001, skill: 14010000, damage: 100 });
   e2.combatEvent({ type: 'damage', t: 1, actor: 10719, target: 90001, skill: 14010000, damage: 100 });
@@ -323,7 +323,7 @@ function blacklistFlagTests() {
       { id: 1, name: 'Zero', server: 1301 },            // kara listede (ad + sunucu)
       { id: 'p:Zero', name: 'Zero', server: 1301, idle: true }, // sanal satır da bayraklanır
       { id: 2, name: 'Zero', server: 1999 },            // aynı ad başka sunucu: bayrak yok
-      { id: 3, name: 'Player2', server: 1301 },
+      { id: 3, name: 'Player1', server: 1301 },
       { id: 4, name: 'Zero', server: 1301, own: true },  // kendi satırımız bayraklanmaz
       { id: 5, name: 'Player #5' },
     ] };

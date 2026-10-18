@@ -1,6 +1,6 @@
 # Daeva Lens
 
-![Surum](https://img.shields.io/badge/s%C3%BCr%C3%BCm-2.2.0-6366f1?style=for-the-badge) ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0ea5e9?style=for-the-badge) ![Lisans](https://img.shields.io/badge/lisans-GPL--3.0-64748b?style=for-the-badge)
+![Surum](https://img.shields.io/badge/s%C3%BCr%C3%BCm-2.2.1-6366f1?style=for-the-badge) ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11%20x64-0ea5e9?style=for-the-badge) ![Lisans](https://img.shields.io/badge/lisans-GPL--3.0-64748b?style=for-the-badge)
 
 **Türkçe** · English: [README.md](../../README.md)
 
@@ -33,6 +33,7 @@ _Tüm görüntüler programın gerçek arayüzüdür; Yayıncı modu açıkken y
 - **Skill rotation:** oyuncu başına beceri şeridi; yakınlaştırma (tekerlek / +/- / Sığdır) ve kaydırma.
 - **Parti gösterimi:** hasar vurmayan parti üyelerini gizleme ayarı.
 - **Yayıncı modu:** oyuncu adları ekranda takma adla değişir.
+- **Varsayılan olarak sessiz:** sesler, ekran bildirimleri, zamanlayıcılar ve ek paneller varsayılan olarak kapalıdır, Ayarlar'dan açılır.
 
 ## Kurulum
 
@@ -44,7 +45,7 @@ _Tüm görüntüler programın gerçek arayüzüdür; Yayıncı modu açıkken y
 **SmartScreen notu:** exe imzasız olduğu için Windows "Windows bilgisayarınızı korudu" diyebilir. **Daha fazla bilgi > Yine de çalıştır** deyin. Exe imzasızdır çünkü imza sertifikası ücretlidir ve bu proje ücretsiz bir hobi projesidir. Antivirüs de imzasız programlarda yanlış alarm verebilir. Güveni artırmanın ücretsiz yolları: dosyaları VirusTotal'da taratabilirsiniz; yanlış alarmı Microsoft'a <https://www.microsoft.com/wdsi/filesubmission> adresinden bildirebilirsiniz. İndirmenizi doğrulamak için önce zip dosyasının özetini sürüm sayfasındaki `SHA256SUMS.txt` ile karşılaştırın:
 
 ```
-certutil -hashfile "Daeva-Lens-v2.2.0-win-x64.zip" SHA256
+certutil -hashfile "Daeva-Lens-v2.2.1-win-x64.zip" SHA256
 ```
 
 Zip'i açtıktan sonra `Daeva Lens.exe` dosyasının özetini, açılan klasörün içindeki `SHA256SUMS.txt` dosyasındaki ilgili satırla karşılaştırın:

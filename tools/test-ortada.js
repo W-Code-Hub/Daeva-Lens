@@ -28,14 +28,14 @@ function memberRec(m) {
 }
 const rosterBody = (ms) => Buffer.concat([Buffer.alloc(16, 0x11), ...ms.map(memberRec)]);
 
-const ME = { sid: 5000, dbid: 237513, name: 'Player1' };
-const P1 = { sid: 5001, dbid: 100001, name: 'Player2' };
-const P2 = { sid: 5002, dbid: 100002, name: 'Player3' };
+const ME = { sid: 5000, dbid: 237513, name: 'Player0' };
+const P1 = { sid: 5001, dbid: 100001, name: 'Player1' };
+const P2 = { sid: 5002, dbid: 100002, name: 'Player2' };
 const RANGER = 14010000, GLADI = 11010000;
 
 // Parti zaten sürerken program açıldı: kadro paketi kaçtı; yalnız üye durum akışı (0x1c92) ve zindan ilanı (0x0297) geliyor.
 function kacirilmisKadro(c, skills) {
-  const eng = newEngine(c, 'Player1');
+  const eng = newEngine(c, 'Player0');
   eng.pickOwn(5000, 'eşleşme', 'test');
   const sk = skills || { 5001: RANGER, 5002: GLADI };
   for (let i = 0; i < 5; i++) {
@@ -44,9 +44,9 @@ function kacirilmisKadro(c, skills) {
     eng.tick();
     for (const [id, d, s] of [[5000, 900, RANGER], [5001, 500, sk[5001]], [5002, 400, sk[5002]]]) eng.combatEvent({ type: 'damage', t: c.t, actor: id, target: 90001, skill: s, damage: d });
   }
-  eng.combatEvent({ type: 'party', size: 3, dungeon: 600092, members: ['Player1', 'Player2', 'Player3'], memberDetails: [
-    { name: 'Player2', globalId: 100001, server: 1301, level: 50, gearScore: 2000, combatPower: 5e4, cls: 14 },
-    { name: 'Player3', globalId: 100002, server: 1301, level: 50, gearScore: 2000, combatPower: 5e4, cls: 11 }] });
+  eng.combatEvent({ type: 'party', size: 3, dungeon: 600092, members: ['Player0', 'Player1', 'Player2'], memberDetails: [
+    { name: 'Player1', globalId: 100001, server: 1301, level: 50, gearScore: 2000, combatPower: 5e4, cls: 14 },
+    { name: 'Player2', globalId: 100002, server: 1301, level: 50, gearScore: 2000, combatPower: 5e4, cls: 11 }] });
   c.t += 1000; eng.tick();
   return eng;
 }
@@ -78,16 +78,16 @@ module.exports = [
     ok(!eng.group.snapshot().complete, 'kadro görülmediği için "tam kadro" denmemeli');
     ok(eng.meter.names.get(5001) === undefined, 'gerçek ad haritası kadro olmadan dolmaz (yalnız gösterim tahmini)');
     eng.meter.snapshot(0, { view: 'party', bossView: false }); // tahmin (inferNames) görünüm çizilirken çalışır
-    ok(eng.meter.label(5001) === 'Player2' && eng.meter.label(5002) === 'Player3', 'sınıfı kadroda tek aday olan üyeler adlanır: ' + eng.meter.label(5001) + '/' + eng.meter.label(5002));
+    ok(eng.meter.label(5001) === 'Player1' && eng.meter.label(5002) === 'Player2', 'sınıfı kadroda tek aday olan üyeler adlanır: ' + eng.meter.label(5001) + '/' + eng.meter.label(5002));
     return e;
   }],
   ['ortada: kadro kaçırıldı, aynı sınıftan iki üye -> "Sınıf #id" kalır (bilinen boşluk)', () => {
     const e = []; const ok = mk(e); const c = { t: 1000 };
     const eng = kacirilmisKadro(c, { 5001: RANGER, 5002: RANGER });
     ok(/^Ranger #5001$/.test(eng.meter.label(5001)) && /^Ranger #5002$/.test(eng.meter.label(5002)), 'belirsizse tahmin yapılmaz, numaralı kalır: ' + eng.meter.label(5001));
-    ok(eng.meter.label(5000) === 'Player1', 'kendi satırımız kayıtlı karakter adıyla görünür');
+    ok(eng.meter.label(5000) === 'Player0', 'kendi satırımız kayıtlı karakter adıyla görünür');
     const rows = eng.meter.snapshot(0, { view: 'party', bossView: false }).enc.actors.map((a) => a.name);
-    ok(rows.includes('Player2') && rows.includes('Player3') && rows.includes('Ranger #5001'), 'adlı sanal satırlar ile numaralı gerçek satırlar yan yana kalır: ' + rows.join());
+    ok(rows.includes('Player1') && rows.includes('Player2') && rows.includes('Ranger #5001'), 'adlı sanal satırlar ile numaralı gerçek satırlar yan yana kalır: ' + rows.join());
     return e;
   }],
   ['ortada: kadro sonradan gelince (üye değişimi/yeni bölge) bütün adlar anında çözülür', () => {
@@ -95,7 +95,7 @@ module.exports = [
     const eng = kacirilmisKadro(c, { 5001: RANGER, 5002: RANGER });
     c.t += 2000;
     eng.combat.frame(0x0092, rosterBody([ME, P1, P2]), c.t);
-    ok(eng.meter.label(5001) === 'Player2' && eng.meter.label(5002) === 'Player3', 'kadro gelince kesin ad: ' + eng.meter.label(5001));
+    ok(eng.meter.label(5001) === 'Player1' && eng.meter.label(5002) === 'Player2', 'kadro gelince kesin ad: ' + eng.meter.label(5001));
     ok(eng.group.via === 'roster' && eng.group.snapshot().complete, 'parti artık tam kadroyla doğrulanmış');
     const rows = eng.meter.snapshot(0, { view: 'party', bossView: false }).enc.actors.map((a) => a.name);
     ok(!rows.some((n) => / #\d+$/.test(n)), 'numaralı satır kalmaz: ' + rows.join());
@@ -106,30 +106,30 @@ module.exports = [
     const eng = kacirilmisKadro(c, { 5001: RANGER, 5002: RANGER });
     c.t += 500;
     eng.combat.frame(0x2292, memberRec(P1), c.t);
-    ok(eng.meter.label(5001) === 'Player2', 'tek üye paketi bu üyeyi çözer: ' + eng.meter.label(5001));
+    ok(eng.meter.label(5001) === 'Player1', 'tek üye paketi bu üyeyi çözer: ' + eng.meter.label(5001));
     ok(/ #5002$/.test(eng.meter.label(5002)), 'diğeri henüz numaralı: ' + eng.meter.label(5002));
     return e;
   }],
   ['ortada: kayıt başı kesilince oyuncu adları görüş alanına girdikçe gelir, çökme yok', async () => {
     if (kayitYok('kalabalik-karisik.jsonl')) return { skip: true };
     const e = []; const ok = mk(e);
-    const tam = await oynat('kalabalik-karisik.jsonl', 0, 'Player1');
-    const kes = await oynat('kalabalik-karisik.jsonl', 20, 'Player1');
+    const tam = await oynat('kalabalik-karisik.jsonl', 0, 'Player0');
+    const kes = await oynat('kalabalik-karisik.jsonl', 20, 'Player0');
     ok(tam.oyuncu.length > 20 && kes.oyuncu.length > 20, 'oyuncu sayısı beklenenden az');
     ok(kes.oran >= tam.oran - 0.15, 'geç açılışta çözülen oran tam kayda yakın olmalı: ' + kes.oran.toFixed(2) + ' vs ' + tam.oran.toFixed(2));
-    ok(kes.eng.meter.label(2987) === 'Player1', 'kendi adı kayıtlı karakter adından gelir');
+    ok(kes.eng.meter.label(2987) === 'Player0', 'kendi adı kayıtlı karakter adından gelir');
     return e;
   }],
   ['ortada: kendi kimliğimiz için ad paketi tekrar gelmez; yalnız kendi becerisiyle bulunur, yanlış kişi seçilmez', async () => {
     if (kayitYok('kalabalik-karisik.jsonl', 'konum-kaydi-2026-10-04T00-55-49-402Z.jsonl')) return { skip: true };
     const e = []; const ok = mk(e);
-    const kes = await oynat('kalabalik-karisik.jsonl', 45, 'Player1');
+    const kes = await oynat('kalabalik-karisik.jsonl', 45, 'Player0');
     ok(kes.eng.ownId === null || kes.eng.ownId === 2987, 'yanlış kişi "sen" seçilmemeli: ' + kes.eng.ownId);
     const ham = await oynat('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl', 20, null);
     ok(ham.eng.ownId === 2987, 'kayıtlı karakter adı yokken kendi becerisiyle geç açılışta da bulunur: ' + ham.eng.ownId);
     // BİLİNEN BOŞLUK (düzeltilmedi): kayıtlı karakter adı VARKEN aynı kayıt 20. sn'den açılırsa, ad paketiyle bulunan doğru kimlik (2987)
     // bir saniye sonra zayıf "giden istek eşleşmesi" ile başka kimliğe (86830) devredilir ve ad oraya taşınır (migrateActor). Burada yalnız çökmediği doğrulanır.
-    const adli = await oynat('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl', 20, 'Player1');
+    const adli = await oynat('konum-kaydi-2026-10-04T00-55-49-402Z.jsonl', 20, 'Player0');
     ok(adli.eng.ownId !== undefined, 'adlı geç açılış çalışır durumda kalır');
     return e;
   }],

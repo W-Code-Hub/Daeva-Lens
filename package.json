@@ -1,7 +1,7 @@
 {
   "name": "daeva-lens",
   "productName": "Daeva Lens",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Daeva Lens: Aion 2 DPS / healing meter, death recap, boss break gauge, skill cooldown alerts. Reads a copy of incoming network traffic; never touches the game.",
   "main": "main.js",
   "private": true,

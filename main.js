@@ -190,20 +190,20 @@ const DEFAULTS = {
   idleSec: 8,
   volume: 0.8,
   combatOnlySound: false,
-  showCooldowns: true,
+  showCooldowns: false,
   cdViewMode: 'icons', // 'icons' | 'bars'
   cdOnlyOnCooldown: false, // sadece bekleme süresindeyken göster
-  showTarget: true,
-  showGS: true,        // Faz 6.2b (S-17): grup üyesinin adının yanında Gear Score (0x0297)
-  showCP: true,        // Faz 6.2b (S-17): grup üyesinin adının yanında Combat Power (0x0297)
+  showTarget: false,
+  showGS: false,        // Faz 6.2b (S-17): grup üyesinin adının yanında Gear Score (0x0297)
+  showCP: false,        // Faz 6.2b (S-17): grup üyesinin adının yanında Combat Power (0x0297)
   bossView: true,      // boss dövüşünde sadece boss hasarı (false ise tüm hasar)
-  visualToasts: true,  // panel üzerinde görsel bildirim rozetleri (toast)
-  soundStagger: true,  // Faz 7: boss kırılma uyarısı sesi (gong/break)
-  soundLowHp: true,    // Faz 7: düşük can nabız sesi
-  soundPotion: true,   // Faz 7: iksir içme su damlası sesi
-  itemTts: 'name',     // Faz 8.4: eşya sesli uyarısı: 'kind' (kısa tür adı) | 'name' (tam eşya adı) | 'off'
-  bossTarget: true,    // Faz 8.6: boss kartında "Hedef: <oyuncu>" rozeti
-  showIdleParty: true, // hasar vurmayan parti üyeleri de 0 hasarla listede görünsün
+  visualToasts: false,  // panel üzerinde görsel bildirim rozetleri (toast)
+  soundStagger: false,  // Faz 7: boss kırılma uyarısı sesi (gong/break)
+  soundLowHp: false,    // Faz 7: düşük can nabız sesi
+  soundPotion: false,   // Faz 7: iksir içme su damlası sesi
+  itemTts: 'off',     // Faz 8.4: eşya sesli uyarısı: 'kind' (kısa tür adı) | 'name' (tam eşya adı) | 'off'
+  bossTarget: false,    // Faz 8.6: boss kartında "Hedef: <oyuncu>" rozeti
+  showIdleParty: false, // hasar vurmayan parti üyeleri de 0 hasarla listede görünsün
   soundChoiceStagger: 'stagger',
   soundChoiceLowHp: 'lowhp',
   soundChoicePotion: 'potion',
@@ -223,22 +223,22 @@ const DEFAULTS = {
   deneysel: {},           // yalnız geliştirme: deneysel özellik anahtarları { buffs: true, ... } (lib/deneysel FEATURES)
   deneyselBolge: 'global-eu', // yalnız geliştirme: etkinlik zamanlayıcısının sunucu bölgesi
   deneyselUstte: false,   // yalnız geliştirme: Deneysel penceresi oyunun üstünde kalsın
-  timersOn: true,         // Faz 8.3: dünya boss / etkinlik zamanlayıcıları (genel gösterim)
+  timersOn: false,         // Faz 8.3: dünya boss / etkinlik zamanlayıcıları (genel gösterim)
   timerRegion: 'global-eu', // Faz 8.3: sunucu bölgesi (lib/timers REGIONS)
   timerAlarms: {},        // Faz 8.3: etkinlik başına alarm { invasion: true, ... } (varsayılan hepsi kapalı)
-  timerAlertMode: 'both', // Faz 9: uyarı türü 'sound' | 'text' | 'both' | 'off'
+  timerAlertMode: 'off', // Faz 9: uyarı türü 'sound' | 'text' | 'both' | 'off'
   timerAlertSteps: [10, 5, 1, 0], // Faz 9: kaç dakika kala uyarılsın (15/10/5/1; 0 = başlangıç)
   timerSound: 'chime',    // Faz 9: uyarı sesi (Web Audio ile üretilir)
   timerVolume: 70,        // Faz 9: uyarı ses seviyesi 0-100 (sentez sesi + sesli okuma)
-  timerBeep: true,        // Faz 9: uyarı sesi (zil) çal; sesli okumadan bağımsız
-  timerTts: true,         // Faz 9: uyarıyı İngilizce sesli oku
+  timerBeep: false,        // Faz 9: uyarı sesi (zil) çal; sesli okumadan bağımsız
+  timerTts: false,         // Faz 9: uyarıyı İngilizce sesli oku
   timerToastMode: 'auto', // Faz 9: ekran uyarısı 'hold' (Gizle'ye basana kadar) | 'auto' (N sn sonra kapanır)
   timerToastSec: 15,      // Faz 9: otomatik kapanma süresi (sn)
   timerCombat: 'quiet',   // Faz 9: savaşta 'quiet' (ses yok, kısa sessiz yazı) | 'normal'
   playerRatingsOn: true,  // Faz 8.2: oyuncu değerlendirme / kara liste rozetleri (yerel dosya, ağ yok)
   deathRecap: true,       // Faz 8.9: Ölümler sekmesinde tıklayınca açılan ölüm özeti zaman tüneli (kim / hangi beceri / ne kadar)
-  blacklistAlert: true,   // Kara listedeki oyuncu partiye girince panelde kırmızı uyarı (oyuncu başına oturumda bir kez; yerel, ağ yok)
-  personalBest: true,     // Faz 8.14: boss kişisel en iyi DPS rekoru bildirimi ve altın kupa rozeti (yerel dosya)
+  blacklistAlert: false,   // Kara listedeki oyuncu partiye girince panelde kırmızı uyarı (oyuncu başına oturumda bir kez; yerel, ağ yok)
+  personalBest: false,     // Faz 8.14: boss kişisel en iyi DPS rekoru bildirimi ve altın kupa rozeti (yerel dosya)
   streamerMode: false,    // Faz 8.13: yayıncı modu: oyuncu adları yalnız gösterimde takma adla maskelenir
   screenProtect: false,   // açılırsa panel ekran görüntüsü/yayın yakalamadan gizlenir (setContentProtection); varsayılan kapalı
   autoShowWithGame: true, // Faz 8.17: oyun trafiği (Npcap) gelmeyince autoHideSec sn sonra panel gizlenir, paket gelince kendiliğinden görünür
@@ -270,7 +270,7 @@ function loadSettings() {
   // Faz 8.3: bölge ilk kez seçiliyorsa eski deneysel bölge değerinden al; geçersizse varsayılan
   if (raw0.timerRegion === undefined && raw0.deneyselBolge) settings.timerRegion = raw0.deneyselBolge;
   settings.timerRegion = TIMERS.normRegion(settings.timerRegion);
-  settings.timersOn = settings.timersOn !== false;
+  settings.timersOn = settings.timersOn === true;
   settings.timerAlarms = cleanTimerAlarms(settings.timerAlarms);
   ALERTS.normalize(settings);
   settings.charClasses = KEYSKILLS.normCharClasses(settings.charClasses);
@@ -388,14 +388,14 @@ function onEngineEvent(e) {
       const isTimer = e.why && e.why.includes('zamanlayıcı');
       if (settings.combatOnlySound && !inCombat() && !e.fromServer && !isTimer) return;
       const s = soundFor(e.base);
-      send(panelWin, 'alert', { kind: e.type, base: e.base, name: e.name, sound: e.type === 'warn' ? 'tik' : s.sound, volume: settings.volume, visual: settings.visualToasts !== false });
+      send(panelWin, 'alert', { kind: e.type, base: e.base, name: e.name, sound: e.type === 'warn' ? 'tik' : s.sound, volume: settings.volume, visual: settings.visualToasts === true });
       return;
     }
     case 'changed':
       return;
     case 'stagger':
-      if (settings.soundStagger !== false || settings.visualToasts !== false) {
-        const snd = (settings.soundStagger !== false) ? (settings.soundChoiceStagger || 'stagger') : 'sessiz';
+      if (settings.soundStagger === true || settings.visualToasts === true) {
+        const snd = (settings.soundStagger === true) ? (settings.soundChoiceStagger || 'stagger') : 'sessiz';
         const isTr = (settings.lang === 'tr' || (typeof I18N !== 'undefined' && I18N.getLang && I18N.getLang() === 'tr'));
         send(panelWin, 'alert', {
           kind: 'stagger',
@@ -403,13 +403,13 @@ function onEngineEvent(e) {
           volume: settings.volume,
           name: t('Boss Stagger'),
           tts: isTr ? 'Boss kırıldı!' : 'Boss staggered!',
-          visual: settings.visualToasts !== false,
+          visual: settings.visualToasts === true,
         });
       }
       return;
     case 'lowhp':
-      if (settings.soundLowHp !== false || settings.visualToasts !== false) {
-        const snd = (settings.soundLowHp !== false) ? (settings.soundChoiceLowHp || 'lowhp') : 'sessiz';
+      if (settings.soundLowHp === true || settings.visualToasts === true) {
+        const snd = (settings.soundLowHp === true) ? (settings.soundChoiceLowHp || 'lowhp') : 'sessiz';
         const isTr = (settings.lang === 'tr' || (typeof I18N !== 'undefined' && I18N.getLang && I18N.getLang() === 'tr'));
         send(panelWin, 'alert', {
           kind: 'lowhp',
@@ -417,13 +417,13 @@ function onEngineEvent(e) {
           volume: settings.volume,
           name: t('Low HP Alert'),
           tts: isTr ? 'Canın azaldı!' : 'Low health warning!',
-          visual: settings.visualToasts !== false,
+          visual: settings.visualToasts === true,
         });
       }
       return;
     case 'potion':
-      if (settings.soundPotion !== false || settings.visualToasts !== false) {
-        let snd = (settings.soundPotion !== false) ? (settings.soundChoicePotion || 'potion') : 'sessiz';
+      if (settings.soundPotion === true || settings.visualToasts === true) {
+        let snd = (settings.soundPotion === true) ? (settings.soundChoicePotion || 'potion') : 'sessiz';
         if (snd === 'oku' && settings.itemTts === 'off') snd = 'potion'; // TTS kapalıysa konuşma yerine iksir sesi
         const isTr = (settings.lang === 'tr' || (typeof I18N !== 'undefined' && I18N.getLang && I18N.getLang() === 'tr'));
         send(panelWin, 'alert', {
@@ -432,7 +432,7 @@ function onEngineEvent(e) {
           volume: settings.volume,
           name: e.name || t('Potion'),
           tts: itemTtsText(e),
-          visual: settings.visualToasts !== false,
+          visual: settings.visualToasts === true,
         });
       }
       return;
@@ -520,7 +520,7 @@ function onBossSave(r) {
 // Kara listedeki oyuncu partiye girince panelde bir kez uyarı (oyuncu başına oturum başına). Ad yayıncı modunda maskelenir.
 const blWarned = new Set();
 function warnBlacklisted(details) {
-  if (settings.playerRatingsOn === false || settings.blacklistAlert === false || !Array.isArray(details)) return;
+  if (settings.playerRatingsOn === false || settings.blacklistAlert !== true || !Array.isArray(details)) return;
   const r = getRatings();
   for (const m of details) {
     if (!m || !m.name || (settings.charName && m.name.toLowerCase() === settings.charName.toLowerCase())) continue;
@@ -528,14 +528,14 @@ function warnBlacklisted(details) {
     if (blWarned.has(id) || !r.isBlacklisted(m.name, m.server > 0 ? String(m.server) : '')) continue;
     blWarned.add(id);
     const shown = settings.streamerMode ? getMasker().alias(m.name, m.cls || null, false, 'Me') : m.name;
-    send(panelWin, 'alert', { kind: 'blacklist', sound: 'threat', volume: settings.volume, name: t('Blacklisted player in party') + ': ' + shown, visual: settings.visualToasts !== false });
+    send(panelWin, 'alert', { kind: 'blacklist', sound: 'threat', volume: settings.volume, name: t('Blacklisted player in party') + ': ' + shown, visual: settings.visualToasts === true });
   }
 }
 
 // Faz 8.14: kişisel en iyi (userData/personal_bests.json). Ayar kapalıysa hiçbir şey okunmaz/yazılmaz.
 let personalBests = null;
 function onBossEnd(b) {
-  if (settings.personalBest === false) return null;
+  if (settings.personalBest !== true) return null;
   if (!personalBests) { personalBests = new PersonalBests(path.join(DATA(), 'personal_bests.json')); personalBests.load(); }
   const r = personalBests.submit(b.code, b.name, b.dps, b.dur);
   if (r.isNew) {
@@ -544,7 +544,7 @@ function onBossEnd(b) {
     send(panelWin, 'alert', {
       kind: 'pb', sound: 'sessiz', volume: settings.volume,
       name: t('New record!') + ' ' + (b.name || 'Boss') + ' · ' + k + ' DPS',
-      visual: settings.visualToasts !== false,
+      visual: settings.visualToasts === true,
     });
   }
   return r;
@@ -572,6 +572,7 @@ function makeEngine(opts = {}) {
     serverBases: settings.serverBases,
     mobsCache: mobsCache,
     onEvent: onEngineEvent,
+    log: (...a) => log(...a),
   });
   engine.meter.onBossEnd = onBossEnd;
   engine.meter.onBossRecord = onBossRecord;
@@ -580,6 +581,8 @@ function makeEngine(opts = {}) {
   if (savedParty) engine.meter.setParty(savedParty, { info: true }); // yalnız ad/sınıf bilgisi; parti durumu kadro paketinden gelir
   if (settings.ownManual) engine.setOwnManual(settings.ownManual);
 }
+
+let pktErrors = 0;
 
 function onHelperLine(line) {
   if (rec) rec.stream.write(line + '\n');
@@ -591,7 +594,11 @@ function onHelperLine(line) {
     status.lastPkt = Date.now();
     if (startHidden && panelWin) { startHidden = false; panelWin.showInactive(); updateTray(); }
     autoShowPacket();
-    engine.packet(m);
+    // motor hatası yardımcı akışını kesmesin; ilk 5 hata + sonra her 100.'sü loga yazılır
+    try { engine.packet(m); } catch (err) {
+      pktErrors++;
+      if (pktErrors <= 5 || pktErrors % 100 === 0) log('[paket hatası]', pktErrors, err && err.message);
+    }
     return;
   }
   if (m.type === 'conns') { status.conns = (m.conns || []).length; return; }
@@ -747,6 +754,8 @@ function createPanel() {
   });
   panelWin.setAlwaysOnTop(true, 'screen-saver');
   applyScreenProtect();
+  // sürükleme dinleyicisi (win-drag) attach ile kurulur; çekmece açıkken panel ona çarpmaz
+  Collide.attach(panelWin, () => (drawerWin && !drawerWin.isDestroyed() && drawerWin.isVisible() ? drawerWin.getBounds() : null));
   panelWin.webContents.on('console-message', (e) => { if (e.level === 'error' || e.level === 3) log('[panel]', e.message, e.lineNumber); });
   panelWin.loadFile(path.join(__dirname, 'ui', 'panel.html'));
   panelWin.once('ready-to-show', () => { if (!startHidden) panelWin.showInactive(); applyClickThrough(); });
@@ -792,6 +801,7 @@ function createDrawerWindow() {
     },
   });
   drawerWin.setAlwaysOnTop(true, 'screen-saver');
+  Collide.attach(drawerWin, () => (panelWin && !panelWin.isDestroyed() ? panelWin.getBounds() : null));
   applyScreenProtect();
   drawerWin.webContents.on('console-message', (e) => { if (e.level === 'error' || e.level === 3) log('[drawer]', e.message, e.lineNumber); });
   drawerWin.loadFile(path.join(__dirname, 'ui', 'drawer.html'));
@@ -967,7 +977,7 @@ function panelState(cdList) {
     onlyMine: settings.onlyMine,
     view: effView,
     bossView: settings.bossView !== false,
-    showIdle: settings.showIdleParty !== false, // hasar vurmayan parti üyeleri 0 hasarla listede kalsın
+    showIdle: settings.showIdleParty === true, // hasar vurmayan parti üyeleri 0 hasarla listede kalsın
   };
   if (selectedBoss !== null) snapOpts.boss = selectedBoss;
   const snap = cachedSnapshot(selectedEnc, snapOpts);
@@ -1004,7 +1014,7 @@ function panelState(cdList) {
     deaths: snap.deaths || [], // Sürüm 2.0: son ölüm özetleri (Ölümler sekmesi)
     cds,
     view: { mode: settings.view, eff: effView, needOwn: snap.needOwn, party: engine.meter.party ? { size: engine.meter.party.size, dungeon: engine.meter.party.dungeon, members: [...engine.meter.party.members] } : null },
-    ui: { lang: settings.lang, zoom, uiScale: settings.uiScale, accent: accentRgb(), opacity: settings.opacity, showCooldowns: settings.showCooldowns, cdViewMode: settings.cdViewMode || 'icons', cdOnlyOnCooldown: !!settings.cdOnlyOnCooldown, showTarget: settings.showTarget !== false, showGS: settings.showGS !== false, showCP: settings.showCP !== false, bossTarget: settings.bossTarget !== false, maxRows: settings.maxRows, onlyMine: settings.onlyMine, clickThrough: settings.clickThrough, posLock: !!settings.posLock, visualToasts: settings.visualToasts !== false, deathRecap: settings.deathRecap !== false, personalBest: settings.personalBest !== false, streamerMode: !!settings.streamerMode },
+    ui: { lang: settings.lang, zoom, uiScale: settings.uiScale, accent: accentRgb(), opacity: settings.opacity, showCooldowns: settings.showCooldowns, cdViewMode: settings.cdViewMode || 'icons', cdOnlyOnCooldown: !!settings.cdOnlyOnCooldown, showTarget: settings.showTarget === true, showGS: settings.showGS === true, showCP: settings.showCP === true, bossTarget: settings.bossTarget === true, maxRows: settings.maxRows, onlyMine: settings.onlyMine, clickThrough: settings.clickThrough, posLock: !!settings.posLock, visualToasts: settings.visualToasts === true, deathRecap: settings.deathRecap !== false, personalBest: settings.personalBest === true, streamerMode: !!settings.streamerMode },
   };
 }
 
@@ -1374,7 +1384,7 @@ function ratePayload() {
     for (const e of d.encs) for (const p of e.players) seen.set(p.n.toLowerCase(), { targetNickname: p.n });
     mask = ratingsMask([...seen.values()]);
   }
-  return { on, ...d, servers: loadServers(), alert: settings.blacklistAlert !== false, mask };
+  return { on, ...d, servers: loadServers(), alert: settings.blacklistAlert === true, mask };
 }
 function notifyRatings() {
   const on = settings.playerRatingsOn !== false;
@@ -1390,7 +1400,7 @@ function registerIpc() {
     for (const [k, v] of Object.entries(patch || {})) {
       if (k in DEFAULTS) settings[k] = v;
     }
-    if ('itemTts' in (patch || {}) && !['kind', 'name', 'off'].includes(settings.itemTts)) settings.itemTts = 'name';
+    if ('itemTts' in (patch || {}) && !['kind', 'name', 'off'].includes(settings.itemTts)) settings.itemTts = 'off';
     for (const bk of ['bossTarget', 'showIdleParty', 'bossView', 'deathRecap', 'personalBest', 'blacklistAlert', 'streamerMode', 'posLock']) {
       if (bk in (patch || {})) settings[bk] = !!settings[bk]; // Faz 8.6: yalnız mantıksal değer
     }
@@ -1703,7 +1713,7 @@ function updateTray() {
     { label: t('Position lock'), type: 'checkbox', checked: !!settings.posLock, accelerator: 'Ctrl+Shift+K', click: togglePosLock },
     { type: 'separator' },
     { type: 'separator' },
-    { label: t('Reset meter'), accelerator: 'Ctrl+Shift+R', click: () => { engine.meter.reset(); selectedEnc = 0; broadcast(true); } },
+    { label: t('Reset meter'), accelerator: 'Ctrl+Shift+R', click: () => { engine.meter.reset(); selectedEnc = 0; selectedBoss = null; broadcast(true); } },
     { type: 'separator' },
     { label: t('Skills and sounds…'), click: () => openSettings('skills') },
     { label: t('Settings…'), click: () => openSettings('general') },
@@ -1763,7 +1773,7 @@ function registerShortcuts() {
   reg(sc.posLock || DEFAULTS.shortcuts.posLock, togglePosLock);
   reg(sc.reset || DEFAULTS.shortcuts.reset, () => {
     engine.meter.reset();
-    selectedEnc = 0;
+    selectedEnc = 0; selectedBoss = null;
     broadcast(true);
   });
 }
@@ -1826,7 +1836,7 @@ app.whenReady().then(() => {
   setInterval(() => {
     try {
       toastTick();
-      if (settings.timersOn === false) return;
+      if (settings.timersOn !== true) return;
       const nowMs = Date.now();
       for (const a of alertSched.tick(nowMs, settings.timerRegion, settings.timerAlarms, settings.timerAlertSteps)) {
         fireTimerAlert(a.name, a.step);

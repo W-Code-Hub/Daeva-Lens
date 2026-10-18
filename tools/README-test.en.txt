@@ -15,7 +15,7 @@ Contents:
                       ui/mask, itemKind, sharecard (pure parts), classifyBossCast
   tools/replay.js, satirlar.js  Helper tools (recording reading/inspection)
   test/beklenen.json  The correct answers for each recording
-  test/kayitlar/      No recordings are published for privacy reasons (folder is empty), so the tests that need them are SKIPPED. You can put your own recordings here
+  test/kayitlar/      Only one anonymous sample recording; the others are not published for privacy reasons, so the related tests are SKIPPED
 
 Notes:
   - The fuzz test looks for recordings in these folders: test/kayitlar, %APPDATA%\Daeva Lens\kayitlar,
