@@ -11,3 +11,8 @@ Thumbs.db
 .vscode/
 *.bak
 *.old
+
+# local game recordings contain real player names and network details; never commit
+test/kayitlar/
+*.jsonl
+*.jsonl.gz
