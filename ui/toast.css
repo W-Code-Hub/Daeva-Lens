@@ -1,0 +1,26 @@
+:root { --bg: 18, 20, 26; --alpha: 0.92; --acc-rgb: 242, 179, 61; --own: rgb(var(--acc-rgb)); --text: #e9e6df; --dim: #8d8a83; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: transparent; overflow: hidden; }
+body { font: 12px/1.35 "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif; color: var(--text); user-select: none; }
+#stack { display: flex; flex-direction: column; gap: 6px; padding: 0 0 2px; }
+/* Panelin #frame görünümüyle aynı: aynı zemin, saydamlık ayarı, kenarlık ve köşe */
+.tt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px 9px 12px;
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(var(--acc-rgb), 0.06), transparent 60%),
+    rgba(var(--bg), var(--alpha));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.tt .msg { flex: 1; min-width: 0; font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+.tt button {
+  font: inherit; font-size: 11px; color: var(--text); cursor: pointer;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px; padding: 4px 12px;
+}
+.tt button:hover { background: rgba(255, 255, 255, 0.16); }
+.tt button:focus-visible { outline: 2px solid var(--own); outline-offset: 2px; }
+.tt.quiet { padding: 5px 10px; }
+.tt.quiet .msg { font-size: 11px; font-weight: 500; opacity: 0.9; }

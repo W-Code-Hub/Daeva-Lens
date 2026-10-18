@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' file: data:; media-src 'self' file:; style-src 'self' 'unsafe-inline'">
+<title>Daeva Lens</title>
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+<div id="frame">
+  <div id="meter">
+    <header id="bar">
+      <span id="brand" title=""><img id="logo" src="../assets/logo-mini.png" alt="Daeva Lens" draggable="false"><i id="dot" class="dot"></i></span>
+      <span id="ping" class="num" title="Ping (round trip to the game server)"></span>
+      <span class="grow"></span>
+      <span id="timer" class="num" hidden>0:00</span>
+      <button id="bossReportBtn" class="chip boss-chip" title="Boss Details" hidden><svg viewBox="0 0 16 16" class="chip-svg"><path d="M2.5 13.5h11M4.5 11.5v-3M8 11.5v-7M11.5 11.5v-4.5"/></svg> <span id="bossReportText">Boss Details</span></button>
+      <button id="view" class="chip" title="Who to show. Click to change."></button>
+      <div class="tools">
+        <button id="reset" class="ib" title="Reset (Ctrl+Shift+R)"><svg viewBox="0 0 16 16"><path d="M3 8a5 5 0 1 0 1.6-3.7"/><path d="M3 2.5v3h3"/></svg></button>
+        <button id="lock" class="ib" title="Click-through (Ctrl+Shift+L)"><svg viewBox="0 0 16 16"><rect x="3.5" y="7" width="9" height="6.5" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg></button>
+        <button id="posLock" class="ib" title="Position lock (Ctrl+Shift+K)"><svg viewBox="0 0 16 16"><path d="M8 1.5v13M1.5 8h13M8 1.5l-2 2M8 1.5l2 2M8 14.5l-2-2M8 14.5l2-2M1.5 8l2-2M1.5 8l2 2M14.5 8l-2-2M14.5 8l-2 2"/></svg></button>
+        <button id="gear" class="ib" title="Skills and settings"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.4 3.4l1.4 1.4M11.2 11.2l1.4 1.4M3.4 12.6l1.4-1.4M11.2 4.8l1.4-1.4"/></svg></button>
+        <button id="hide" class="ib" title="Hide (Ctrl+Shift+D)"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+      </div>
+    </header>
+
+    <section id="focus" hidden>
+      <div class="fl"><span id="fName"></span><span id="fPct" class="num"></span></div>
+      <div class="fbar"><i id="fFill"></i></div>
+      <div class="fl sub"><span id="fHp" class="num"></span><span id="fTtk" class="num"></span></div>
+      <div id="stg" class="stg" hidden title="Boss break gauge: fills down as the group hits; when it breaks the boss is staggered (burst window).">
+        <span class="stg-l">Break</span><div class="stg-bar"><i id="stgFill"></i></div><span id="stgTxt" class="num"></span>
+      </div>
+    </section>
+
+    <section id="summary">
+      <div class="summary-top">
+        <div class="big"><span id="myDps" class="num">0</span><small id="bigUnit">dps</small></div>
+        <div id="modes" class="modes" role="tablist">
+          <button data-m="dmg" class="on" title="Damage done">Damage</button><button data-m="heal" title="Healing done (effective). Self-heals and potions are shown separately.">Healing</button><button data-m="taken" title="Damage taken from monsters">Taken</button>
+        </div>
+      </div>
+      <div class="facts" id="facts">
+        <span><b id="myTotal" class="num">0</b> damage</span>
+        <span><b id="myShare" class="num">–</b> share</span>
+        <span><b id="myCrit" class="num">–</b> crit</span>
+        <span id="takenWrap" hidden><b id="taken" class="num">0</b> taken</span>
+        <span class="ownhint">Character not identified · type your name in Settings</span>
+      </div>
+      <div class="facts" id="facts2" hidden></div>
+    </section>
+
+    <main id="rows"></main>
+    <div id="empty"></div>
+
+    <footer id="cds"></footer>
+    <div id="foot"></div>
+    <svg id="posBadge" viewBox="0 0 16 16" hidden><rect x="3.5" y="7" width="9" height="6.5" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+    <div id="lockBadge" hidden>Click-through · Ctrl+Shift+L</div>
+  </div>
+</div>
+<div id="menu" hidden></div>
+<div id="toast" hidden></div>
+<script src="i18n.js"></script>
+<script src="mask.js"></script>
+<script src="drag.js"></script>
+<script src="sound.js"></script>
+<script src="panel.js"></script>
+</body>
+</html>

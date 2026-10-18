@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' file: data:; media-src 'self' file:; style-src 'self' 'unsafe-inline'">
+<title>Daeva Lens · Settings</title>
+<link rel="stylesheet" href="panel.css">
+<link rel="stylesheet" href="drawer.css">
+</head>
+<body class="drawer-window">
+  <aside id="drawer">
+    <header class="dh">
+      <div class="seg" role="tablist">
+        <button data-tab="boss" id="tabBtnBoss"><span class="crown">♛</span> Boss &amp; Players</button>
+        <button data-tab="skills" class="on">Skills</button>
+        <button data-tab="timers">Timers</button>
+        <button data-tab="general">Settings</button>
+      </div>
+      <button id="dclose" class="ib" title="Close"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+    </header>
+
+    <div class="dbody">
+      <section id="tab-boss" class="tab">
+        <div class="bp-cols">
+          <div class="bp-left" id="bcSegmentsWrap">
+            <div class="bp-tools">
+              <input type="text" id="bhSearch" class="bh-search" placeholder="Search boss, dungeon or player" aria-label="Search boss, dungeon or player" autocomplete="off" spellcheck="false">
+              <div class="bp-row">
+                <select id="bhBossSel" aria-label="Boss filter"></select>
+                <select id="bhSort" aria-label="Sort fights"><option value="new">Newest first</option><option value="dur">Longest fight</option><option value="dps">Highest party DPS</option><option value="own">Highest own DPS</option></select>
+              </div>
+              <div class="rt-chips bh-chips" id="bhKinds" role="group" aria-label="Type filter"><button data-k="all">All types</button><button data-k="dungeon">Dungeon</button><button data-k="world">Open world</button></div>
+              <span id="bhCount" class="bh-count num"></span>
+            </div>
+            <div class="bh-list" id="bhList" role="list"></div>
+            <p class="hint bp-keep">Cards are permanent; there is no delete button.</p>
+          </div>
+          <div class="bp-right" id="bpRight">
+            <div id="bcEmpty" class="bc-empty-box">
+              <div class="bc-empty-icon">♛</div>
+              <b>Click a card</b>
+              <span>Players show only after you pick a boss or dungeon card. In a dungeon card, pick the boss first.</span>
+            </div>
+            <div id="bcPickBoss" class="bc-empty-box" hidden>
+              <div class="bc-empty-icon">♛</div>
+              <b id="bcPickTitle"></b>
+              <span>Pick a boss from the list on the left; the report and players of that fight open here.</span>
+            </div>
+            <div id="bcReport" hidden>
+          <div id="bcMsg" class="bc-empty-box" hidden><div class="bc-empty-icon">♛</div><b id="bcMsgTitle"></b><span id="bcMsgDesc"></span></div>
+          <div class="bc-hero">
+            <div class="bc-hero-left">
+              <div class="bc-crown-box"><span class="crown">♛</span></div>
+              <div class="bc-hero-info">
+                <div class="bc-meta-line">
+                  <span id="bcBadgeTag" class="bc-badge-tag">BOSS</span>
+                  <span id="bcTimeAgo" class="bc-time-ago"></span>
+                </div>
+                <div class="bc-title-row">
+                  <h2 id="bcName" class="bc-title">Boss</h2>
+                </div>
+              </div>
+            </div>
+            <div class="bc-hero-right">
+              <div id="bcStatusPill" class="bc-status-pill">
+                <span class="bc-status-dot"></span>
+                <span id="bcStatus">–</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bc-stats-grid">
+            <div class="bc-stat-card">
+              <span class="bc-stat-lbl">DURATION</span>
+              <span id="bcDur" class="bc-stat-val num">0:00</span>
+            </div>
+            <div class="bc-stat-card highlight">
+              <span class="bc-stat-lbl">BOSS DAMAGE</span>
+              <span id="bcTotal" class="bc-stat-val num">0</span>
+            </div>
+            <div class="bc-stat-card">
+              <span class="bc-stat-lbl">GROUP DPS</span>
+              <span id="bcDps" class="bc-stat-val num">0</span>
+            </div>
+            <div class="bc-stat-card">
+              <span class="bc-stat-lbl">YOUR DPS</span>
+              <span id="bcOwnDps" class="bc-stat-val num">–</span>
+            </div>
+          </div>
+
+          <div id="bcStagger" class="bc-stagger" hidden>
+            <span class="bc-stg-lbl">Break gauge</span>
+            <span class="bc-stg-item"><b id="bcStgBreaks" class="num">0</b> <small>BREAKS</small></span>
+            <span class="bc-stg-item"><b id="bcStgBurst" class="num">0</b> <small>BURST DAMAGE</small></span>
+            <span class="bc-stg-item"><b id="bcStgTime" class="num">0 s</b> <small>STAGGERED</small></span>
+          </div>
+
+          <div id="bcDeathsWrap" class="bc-deaths-wrap" hidden>
+            <div class="bp-h"><b>Deaths in this fight</b><small id="bcDeathsCount" class="num"></small></div>
+            <div id="dlList" class="dl-list"></div>
+          </div>
+
+          <div id="bcPlayersWrap" class="bp-players" hidden>
+            <div class="bp-h"><b id="rtSelTitle">Players</b><small>Ratings and notes save automatically</small></div>
+            <div class="rt-head"><span id="rtSummary" class="rt-sum"></span><div class="rt-chips" id="rtChips"></div></div>
+            <div id="rtPlayers"></div>
+            <p class="hint">Same name on another server counts as a separate player. Ratings and the blacklist are stored only on this computer.</p>
+          </div>
+
+          <div class="bc-table-header">
+            <span>PLAYER & CONTRIBUTION</span>
+            <span class="bc-th-right">DAMAGE · DPS · SHARE</span>
+          </div>
+
+          <div id="bcRows" class="bc-rows-container"></div>
+
+          <div id="bcTimelineWrap" class="bc-timeline-wrap" hidden>
+            <div class="bc-tl-header">
+              <div class="bc-tl-title-group">
+                <span class="bc-tl-title">SKILL ROTATION TIMELINE</span>
+                <span id="bcTlApm" class="bc-tl-apm-tag">0 APM</span>
+              </div>
+              <div class="bc-tl-controls">
+                <select id="bcTlPlayerFilter" class="bc-tl-player-filter"></select>
+                <span class="bc-tl-zoom">
+                  <button type="button" id="bcTlZoomOut" class="bc-tl-zbtn" title="Zoom out">&minus;</button>
+                  <button type="button" id="bcTlZoomIn" class="bc-tl-zbtn" title="Zoom in">+</button>
+                  <button type="button" id="bcTlFit" class="bc-tl-zbtn wide" title="Fit the whole fight">Fit</button>
+                </span>
+              </div>
+            </div>
+            <div class="bc-tl-track-container" id="bcTlTracks" title="Wheel: zoom, drag: pan">
+              <div class="bc-tl-canvas" id="bcTlCanvas">
+                <div class="bc-tl-axis" id="bcTlAxis"></div>
+                <div class="bc-tl-stream" id="bcTlStream"></div>
+              </div>
+            </div>
+            <div class="bc-tl-legend">
+              <span class="bc-tl-legend-item"><i class="bc-tl-dot skill"></i> <small>Skills</small></span>
+              <span class="bc-tl-legend-item"><i class="bc-tl-dot potion"></i> <small>Consumables</small></span>
+              <span class="bc-tl-legend-item"><i class="bc-tl-dot stagger"></i> <small>Stagger Window</small></span>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-skills" class="tab on">
+        <div id="ownLine" class="own"></div>
+        <p class="lead">Skills appear here once you use them. Turn one on to get a countdown and a sound when it's ready.</p>
+        <div class="showcase-wrap" id="showcaseWrap" hidden>
+          <div class="showcase-title">
+            <span class="st-text">Quick Skills</span>
+            <span class="st-hint">Click icon to toggle tracking</span>
+          </div>
+          <div id="skillShowcase" class="skill-showcase"></div>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-chips">
+            <label class="chip-btn"><input type="checkbox" id="onlyTracked"><span>Tracked only</span></label>
+            <label class="chip-btn"><input type="checkbox" id="hidePassives" checked><span>Hide passives</span></label>
+          </div>
+          <div class="filter-vol">
+            <span>Volume</span>
+            <input type="range" id="volume2" min="0" max="1.5" step="0.05">
+          </div>
+        </div>
+        <div id="skills" class="skills-list"></div>
+        <details id="passiveGroup" class="passive-group" hidden>
+          <summary class="pg-summary">Passive skills (<span id="pgCount">0</span>)</summary>
+          <div id="passiveSkills" class="skills-list"></div>
+        </details>
+        <div id="noSkills" class="dempty" hidden>
+          <b>No skills seen yet</b>
+          <span>Use a few skills in game; the list fills itself.</span>
+        </div>
+      </section>
+
+      <section id="tab-timers" class="tab">
+        <label class="tgl"><input type="checkbox" id="timersOn"><i></i><span>Event timers<small>Shows the next start of world bosses and events; alarms below only work while this is on</small></span></label>
+        <div class="field"><span>Server region<small>Times are calculated locally and shown in your computer's time</small></span><select id="timerRegion"></select></div>
+        <div id="timerList"></div>
+        <p class="hint" id="timerReset"></p>
+        <div class="field"><span>Alert type<small>What happens when an event you checked above is about to start</small></span><select id="timerAlertMode"><option value="both">Sound and text</option><option value="sound">Sound only</option><option value="text">Text only</option><option value="off">Off</option></select></div>
+        <div class="field" id="timerStepsField"><span>Alert me before start<small>Pick one or more; each is announced once per event</small></span><div class="pl-tags" id="timerSteps"></div></div>
+        <p class="hint note"><span>Alert sound, voice and volume are in the Sounds section of Settings.</span> <button type="button" class="linkish" id="gotoSounds">Open Sounds</button></p>
+        <div class="field" id="timerToastModeField"><span>On-screen alert stays<small>The alert box appears at the top of the screen without taking focus from the game</small></span><select id="timerToastMode"><option value="auto">Closes by itself</option><option value="hold">Until I press Hide</option></select></div>
+        <div class="field" id="timerToastSecField"><span>Close after<small>Seconds before the alert box closes by itself</small></span><span><input type="number" id="timerToastSec" min="3" max="300" step="1"> s</span></div>
+        <div class="field" id="timerCombatField"><span>During a fight<small>Quiet: no sound or voice, only a small text that fades after a few seconds</small></span><select id="timerCombat"><option value="quiet">Quiet in fights</option><option value="normal">Normal</option></select></div>
+        <div class="field"><span>Test alert<small>Shows a sample alert using the settings above</small></span><button class="play" id="timerTest" style="width:auto;padding:0 12px">Test</button></div>
+        <p class="hint">Alerts only fire for events you checked above (all are off at first). Schedules are community data and may differ from the game.</p>
+      </section>
+
+      <section id="tab-general" class="tab">
+        <div class="set-wrap">
+          <nav class="set-nav" id="setNav" aria-label="Settings sections"></nav>
+          <div class="set-body" id="setBody">
+
+        <div class="set-pane" data-pane="appearance">
+          <div class="field"><span>Language</span><div class="seg2" id="langSel"><button data-v="tr">Türkçe</button><button data-v="en">English</button></div></div>
+          <div class="field"><span>UI scale</span><div class="seg2" id="uiScaleSel"><button data-v="auto" title="Match screen height">Auto</button><button data-v="0.8">80%</button><button data-v="1">100%</button><button data-v="1.2">120%</button><button data-v="1.4">140%</button><button data-v="1.6">160%</button></div></div>
+          <div class="field"><span>Theme</span><div class="swatches" id="accent">
+            <button data-v="gold" title="Gold (Aion)"></button>
+            <button data-v="ice" title="Ice Blue"></button>
+            <button data-v="purple" title="Purple"></button>
+            <button data-v="neon" title="Neon Green"></button>
+            <div class="custom-swatch-wrap" title="Custom color">
+              <button type="button" data-v="custom" id="customColorBtn" title="Custom color">
+                <span class="custom-swatch-icon">+</span>
+              </button>
+              <input type="color" id="customColorInput" value="#f2b33d" tabindex="-1">
+            </div>
+          </div></div>
+          <div class="field"><span>Panel opacity<small>How see-through the panel is</small></span><span class="rng"><input type="range" id="opacity" min="0.15" max="1" step="0.01"><b id="opacityV" class="num"></b></span></div>
+        </div>
+
+        <div class="set-pane" data-pane="panel" hidden>
+          <div class="field"><span>Character name<small>Leave empty to detect it automatically</small></span><input type="text" id="charName" class="w-name" placeholder="Auto-detected"></div>
+          <div class="keys keys-tip">
+            <span>Right-click a player → <i>Blacklist</i></span>
+          </div>
+          <div class="field"><span>Show<small>Which players the meter lists</small></span><select id="viewSel"><option value="auto">Auto: me, party in a group</option><option value="me">Only me</option><option value="party">My party</option><option value="all">Everyone nearby</option></select></div>
+          <div class="field"><span>Fight ends after<small>A fight is closed after this much idle time</small></span><span><input type="number" id="idleSec" min="3" max="60" step="1"> s idle</span></div>
+          <div class="field"><span>Players shown<small>Maximum rows in the meter</small></span><span><input type="number" id="maxRows" min="1" max="24" step="1"></span></div>
+          <label class="tgl"><input type="checkbox" id="showIdleParty"><i></i><span>Show non-damaging party members<small>Party members who aren't hitting stay in the list with 0 damage; off hides them until they hit</small></span></label>
+          <label class="tgl"><input type="checkbox" id="onlyMine"><i></i><span>Only players hitting my targets<small>Hides strangers in the open world</small></span></label>
+          <label class="tgl"><input type="checkbox" id="showTarget"><i></i><span>Target health & info bar<small>Shows monster HP, kill timer and name as a separate bar</small></span></label>
+          <label class="tgl"><input type="checkbox" id="showGS"><i></i><span>Gear Score next to names<small>Party members only; the game doesn't send it for other players</small></span></label>
+          <label class="tgl"><input type="checkbox" id="showCP"><i></i><span>Combat Power next to names<small>Party members only; the game doesn't send it for other players</small></span></label>
+          <label class="tgl"><input type="checkbox" id="showCooldowns"><i></i><span>Show cooldowns on the panel<small>Adds your tracked skills' countdowns to the meter panel</small></span></label>
+          <div class="field sub" id="cdViewModeField">
+            <span>Skill bar display</span>
+            <div class="seg2" id="cdViewModeSel">
+              <button data-v="icons">Icons (WeakAuras)</button>
+              <button data-v="bars">Bars</button>
+            </div>
+          </div>
+          <label class="tgl sub" id="cdOnlyOnCooldownField"><input type="checkbox" id="cdOnlyOnCooldown"><i></i><span>Only show while on cooldown<small>Hides ready skills, flashes green when ready then disappears</small></span></label>
+        </div>
+
+        <div class="set-pane" data-pane="boss" hidden>
+          <label class="tgl"><input type="checkbox" id="bossView"><i></i><span>Boss damage only<small>The meter shows only the damage you deal to the boss</small></span></label>
+          <label class="tgl"><input type="checkbox" id="bossTarget"><i></i><span>Boss target badge<small>Shows who the boss is attacking on the boss card (hidden if the name is unknown)</small></span></label>
+          <label class="tgl"><input type="checkbox" id="deathRecap"><i></i><span>Death recap<small>Click a death to see the last hits taken (who, which skill, how much)</small></span></label>
+          <label class="tgl"><input type="checkbox" id="personalBest"><i></i><span>Personal best<small>Gold trophy and a New record! notice when your DPS beats your previous best on a boss; saved only on this computer</small></span></label>
+        </div>
+
+        <div class="set-pane" data-pane="sounds" hidden>
+          <h4 class="gh first">Volume and playback</h4>
+          <div class="field"><span>Volume<small>Same setting as the Skills tab</small></span><input type="range" id="volume" min="0" max="1.5" step="0.05"></div>
+          <label class="tgl"><input type="checkbox" id="combatOnlySound"><i></i><span>Play sounds only in combat<small>Stays quiet while you are out of a fight</small></span></label>
+
+          <h4 class="gh">Combat alerts</h4>
+          <div class="alerts-vis">
+            <label class="tgl"><input type="checkbox" id="visualToasts" checked><i></i><span>On-screen Visual Alerts<small>Show popup badges on DPS meter (can be toggled separately from audio)</small></span></label>
+          </div>
+          <div class="sound-alerts-grid">
+            <div class="sound-alert-row" data-alert="stagger">
+              <label class="tgl"><input type="checkbox" id="soundStagger" checked><i></i><span>Boss Stagger<small>Deep gong & metallic shatter when break gauge hits 100%</small></span></label>
+              <select class="snd-choice" id="soundChoiceStagger" data-alert="stagger"></select>
+              <button type="button" class="btn-snd-test" data-sound="stagger" data-alert="stagger" title="Test sound">▶</button>
+            </div>
+            <div class="sound-alert-row" data-alert="lowhp">
+              <label class="tgl"><input type="checkbox" id="soundLowHp" checked><i></i><span>Low HP Warning<small>Dual heartbeat pulse (lub-dub) when health drops ≤ 25%</small></span></label>
+              <select class="snd-choice" id="soundChoiceLowHp" data-alert="lowhp"></select>
+              <button type="button" class="btn-snd-test" data-sound="lowhp" data-alert="lowhp" title="Test sound">▶</button>
+            </div>
+            <div class="sound-alert-row" data-alert="potion">
+              <label class="tgl"><input type="checkbox" id="soundPotion" checked><i></i><span>Potion & Consumable<small>Water droplet sweep confirmation when potion is used</small></span></label>
+              <select class="snd-choice" id="soundChoicePotion" data-alert="potion"></select>
+              <button type="button" class="btn-snd-test" data-sound="potion" data-alert="potion" title="Test sound">▶</button>
+            </div>
+            <div class="field"><span>Item voice alert<small>Item name when Text-to-Speech is used</small></span><select id="itemTts"><option value="name">Full item name</option><option value="kind">Short type only</option><option value="off">Off</option></select></div>
+          </div>
+
+          <h4 class="gh">Event timer alerts</h4>
+          <label class="tgl" id="timerBeepField"><input type="checkbox" id="timerBeep"><i></i><span>Play alert sound<small>A short tone before the voice; turn off to hear only the voice</small></span></label>
+          <div class="field" id="timerSoundField"><span>Alert sound<small>Generated on your computer, no files needed</small></span><span class="rng"><select id="timerSound"></select><button class="play" id="timerSoundTest" title="Preview sound"><svg viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg></button></span></div>
+          <label class="tgl" id="timerTtsField"><input type="checkbox" id="timerTts"><i></i><span>Speak the alert<small>Reads it aloud in your language (English or Turkish), like "Siege boss in 5 minutes"; uses a voice installed in Windows</small></span></label>
+          <div class="field" id="timerVolumeField"><span>Alert volume<small>Applies to the alert sound and the voice</small></span><span class="rng"><input type="range" id="timerVolume" min="0" max="100" step="5"><b id="timerVolumeV" class="num"></b></span></div>
+          <p class="hint">Greyed rows follow "Alert type" on the Timers tab, where you also pick which events alert you.</p>
+
+          <h4 class="gh">Skill sounds</h4>
+          <div class="field"><span>Per-skill sounds<small>Each skill has its own sound and test button on the Skills tab</small></span><button class="play" id="gotoSkills" type="button" style="width:auto;padding:0 12px">Open Skills</button></div>
+        </div>
+
+        <div class="set-pane" data-pane="players" hidden>
+          <label class="tgl"><input type="checkbox" id="playerRatingsOn"><i></i><span>Player ratings<small>Shows a badge next to rated players in the panel; notes stay on this computer</small></span></label>
+          <label class="tgl"><input type="checkbox" id="blacklistAlert"><i></i><span>Blacklist alert<small>Red warning when a blacklisted player appears in your party list (once per player per session)</small></span></label>
+        </div>
+
+        <div class="set-pane" data-pane="privacy" hidden>
+          <label class="tgl"><input type="checkbox" id="streamerMode"><i></i><span>Streamer mode<small>Replaces player names with local aliases (Gladiator 1, Healer, Tank) on screen only; saved data and ratings are unchanged, rating badges are hidden</small></span></label>
+          <label class="tgl"><input type="checkbox" id="screenProtect"><i></i><span>Screen-capture protection<small>Hides the panel from screenshots and streaming software. Turn off to show it in OBS.</small></span></label>
+        </div>
+
+        <div class="set-pane" data-pane="window" hidden>
+          <div class="sc-header first">
+            <h4 class="gh">Shortcuts</h4>
+            <button id="scResetDefaultsBtn" class="sc-reset-link" type="button">Reset defaults</button>
+          </div>
+          <div class="sc-table">
+            <div class="sc-row">
+              <span class="sc-label">Show / hide</span>
+              <button type="button" class="sc-record-btn" id="scBtnToggle" data-k="toggle" title="Click to rebind">
+                <span class="sc-combo" id="scKeysToggle"></span>
+              </button>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Click-through</span>
+              <button type="button" class="sc-record-btn" id="scBtnClickThrough" data-k="clickThrough" title="Click to rebind">
+                <span class="sc-combo" id="scKeysClickThrough"></span>
+              </button>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Position lock</span>
+              <button type="button" class="sc-record-btn" id="scBtnPosLock" data-k="posLock" title="Click to rebind">
+                <span class="sc-combo" id="scKeysPosLock"></span>
+              </button>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Reset meter</span>
+              <button type="button" class="sc-record-btn" id="scBtnReset" data-k="reset" title="Click to rebind">
+                <span class="sc-combo" id="scKeysReset"></span>
+              </button>
+            </div>
+          </div>
+          <p class="sc-hint">Click a shortcut to rebind, then press new keys. Esc to cancel.</p>
+
+          <h4 class="gh">Startup and auto-hide</h4>
+          <label class="tgl"><input type="checkbox" id="autoStart"><i></i><span>Start with Windows<small>Waits in the tray; the panel appears when the game starts</small></span></label>
+          <label class="tgl"><input type="checkbox" id="autoShowWithGame"><i></i><span>Show with the game<small>Hides the panel after a while without game traffic and shows it again when the game sends data; the tray icon stays. Uses only the existing packet capture.</small></span></label>
+          <div class="field" id="autoHideField"><span>Hide after<small>How long without game traffic before the panel hides (10-300 s)</small></span><span><input type="number" id="autoHideSec" min="10" max="300" step="1"> s</span></div>
+
+          <h4 class="gh">Data</h4>
+          <div class="btns">
+            <button id="record">Record traffic (90 s)</button>
+            <button id="dataDir">Open data folder</button>
+            <button id="quit" class="danger">Quit</button>
+          </div>
+          <p class="hint">Traffic recordings help find new packets. They are saved in the "kayitlar" folder inside the data folder.</p>
+          <div id="labsCard" class="labs-card" hidden></div>
+        </div>
+
+        <div class="set-pane" data-pane="about" hidden>
+          <h5 class="subh first">What it does</h5>
+          <p>Passively reads a copy of the game's network traffic with Npcap, the way DPS meters do. It makes no network calls of its own, reads no game memory, has no key hook and injects no code into the game. It only looks at the process and connection list to find out whether AION2.exe is running and which connections it uses. It never sends or changes packets.</p>
+          <h5 class="subh">Main features</h5>
+          <p>DPS and damage, boss and dungeon history, boss timers, player ratings and blacklist, voice alerts, and position lock with Ctrl+Shift+K.</p>
+          <h5 class="subh">DPS</h5>
+          <p>Damage is split into fights; a fight ends after the set idle time. Browse the last 10 with the arrows, click a row for its skill breakdown, click a skill for its details.</p>
+          <h5 class="subh">Cooldowns</h5>
+          <p>The server sends only when a skill is used, not its cooldown (except a few, like Deadshot). Type the cooldown or let it be learned from the shortest gap between two uses.</p>
+          <h5 class="subh">Your character</h5>
+          <p>Found automatically by matching the moment you press a skill with the server's reply. If it's wrong, type your character name in the box above.</p>
+          <p class="hint" id="ver"></p>
+        </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </aside>
+  <script src="i18n.js"></script>
+  <script src="setsections.js"></script>
+  <script src="mask.js"></script>
+  <script src="../lib/dungeons.js"></script>
+  <script src="bosshist.js"></script>
+  <script src="../lib/servers.js"></script>
+  <script src="keyskills.js"></script>
+  <script src="drag.js"></script>
+  <script src="sound.js"></script>
+  <script src="drawer.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "_aciklama": "Her kayıt için doğru cevap. tools/test.js tüm kayıtları oynatıp bunlarla karşılaştırır. own: kendi karakter kimliği (null = kayıtta kendi dövüşün yok, kimse seçilmemeli). neverOwn: hiçbir anda 'sen' seçilmemesi gerekenler. alerts: çalması beklenen uyarılar (beceri adı). noAlerts: çalmaması gerekenler.",
+  "kayitlar": [
+    { "file": "konum-kaydi-2026-10-04T00-44-05-014Z.jsonl", "neverOwn": [1180], "not": "Verteron, koşu; kendi beceri kullanımın yok (2987 büyük ihtimalle sensin ama kanıt yok, seçilmemesi de doğru)" },
+    { "file": "konum-kaydi-2026-10-04T00-51-59-334Z.jsonl", "own": 2987, "neverOwn": [1180, 4957], "not": "tek başına dövüş, yanında başka bir Avcı (1180)" },
+    { "file": "konum-kaydi-2026-10-04T00-55-49-402Z.jsonl", "own": 2987, "neverOwn": [3794, 6121, 1386, 8881], "not": "kalabalık alan, LZ4 açılınca kendi becerilerin (Player1 #2987) başarıyla eşleşiyor" },
+    { "file": "konum-kaydi-2026-10-04T01-07-53-431Z.jsonl", "own": 2987, "cd": { "14010000": { "on": true, "cdMs": 30000 } }, "noAlerts": ["Deadshot"], "not": "Deadshot hiç kullanılmadı ama sunucu 6 kez 4738 kalan=0 gönderiyor; eski sürüm 2 kez 'hazır' çalıyordu" },
+    { "file": "hata-2026-10-06T03-23-47.jsonl", "own": 8706, "neverOwn": [10494, 8802, 10737], "cd": { "14010000": { "on": true } }, "alerts": ["Deadshot"], "not": "canlı (2.0.0-dev): 104/105 eşleşme. Deadshot kullanılınca sunucu kalan süreyi geri sayıyor (15700→0), öncesinde 0,6 sn'de bir kalan=0" },
+    { "file": "senaryo-2026-10-06T03-33-03.jsonl", "own": 8706, "cd": { "14010000": { "on": true } }, "learned": { "14010000": 29547 }, "readyCount": { "Deadshot": 6 }, "not": "canlı senaryo 1-11. Deadshot 6 kez kullanıldı; 2'sinde sunucu geri sayım göndermedi (227 ve 332. sn), eski kod bunlarda öğrenilmiş 29,5 sn'yi kullanıp ya hiç çalmıyor ya 12 sn geç çalıyordu. Doğru süre sunucudan 17,7 sn" },
+    { "file": "kalabalik-karisik.jsonl", "own": 2987, "neverOwn": [3794, 6121, 1386, 8881, 16196, 94360], "not": "sentetik: 00-51 kaydının üstüne 00-55 kalabalığı iki kez bindirildi" }
+  ]
+}

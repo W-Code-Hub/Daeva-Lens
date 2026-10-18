@@ -1,0 +1,1422 @@
+{
+  "11010000": {
+    "cdMs": 10000,
+    "name": "Rending Blow"
+  },
+  "11020000": {
+    "cdMs": 10000,
+    "name": "Keen Strike"
+  },
+  "11050000": {
+    "cdMs": 12000,
+    "name": "Crushing Wave"
+  },
+  "11060000": {
+    "cdMs": 12000,
+    "name": "Frenzied Wave"
+  },
+  "11100000": {
+    "cdMs": 16000,
+    "name": "Ruinous Blow"
+  },
+  "11110000": {
+    "cdMs": 30000,
+    "name": "Focused Block"
+  },
+  "11130000": {
+    "cdMs": 120000,
+    "name": "Armor of Balance"
+  },
+  "11190000": {
+    "cdMs": 16000,
+    "name": "Leaping Slam"
+  },
+  "11200000": {
+    "cdMs": 24000,
+    "name": "Ankle Slice"
+  },
+  "11230000": {
+    "cdMs": 30000,
+    "name": "Rush"
+  },
+  "11250000": {
+    "cdMs": 120000,
+    "name": "Zikel's Blessing"
+  },
+  "11260000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "11270000": {
+    "cdMs": 120000,
+    "name": "Survival Stance"
+  },
+  "11300000": {
+    "cdMs": 60000,
+    "name": "Aerial Snare"
+  },
+  "11310000": {
+    "cdMs": 180000,
+    "name": "Doom Advent"
+  },
+  "11340000": {
+    "cdMs": 30000,
+    "name": "Lifestealing Blade"
+  },
+  "11360000": {
+    "cdMs": 20000,
+    "name": "Rush Strike"
+  },
+  "11410000": {
+    "cdMs": 60000,
+    "name": "Wave Armor"
+  },
+  "12010000": {
+    "cdMs": 10000,
+    "name": "Vicious Strike"
+  },
+  "12040000": {
+    "cdMs": 10000,
+    "name": "Pummel"
+  },
+  "12060000": {
+    "cdMs": 12000,
+    "name": "Punishing Strike"
+  },
+  "12070000": {
+    "cdMs": 30000,
+    "name": "Doom Shield"
+  },
+  "12090000": {
+    "cdMs": 30000,
+    "name": "Punishment"
+  },
+  "12100000": {
+    "cdMs": 12000,
+    "name": "Shield Smite"
+  },
+  "12110000": {
+    "cdMs": 30000,
+    "name": "Shield of Protection"
+  },
+  "12120000": {
+    "cdMs": 10000,
+    "name": "Taunt"
+  },
+  "12190000": {
+    "cdMs": 120000,
+    "name": "Second Skin"
+  },
+  "12200000": {
+    "cdMs": 120000,
+    "name": "Armor of Balance"
+  },
+  "12210000": {
+    "cdMs": 60000,
+    "name": "Fury"
+  },
+  "12230000": {
+    "cdMs": 120000,
+    "name": "Noble Armor"
+  },
+  "12250000": {
+    "cdMs": 120000,
+    "name": "Comrade in Arms"
+  },
+  "12260000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "12320000": {
+    "cdMs": 180000,
+    "name": "Nezekan's Shield"
+  },
+  "12330000": {
+    "cdMs": 30000,
+    "name": "Capture"
+  },
+  "12430000": {
+    "cdMs": 20000,
+    "name": "Shield Rush"
+  },
+  "13010000": {
+    "cdMs": 10000,
+    "name": "Quick Slice"
+  },
+  "13020000": {
+    "cdMs": 12000,
+    "name": "Throw Shadowblade"
+  },
+  "13040000": {
+    "cdMs": 12000,
+    "name": "Swift Slice"
+  },
+  "13060000": {
+    "cdMs": 30000,
+    "name": "Ambush"
+  },
+  "13070000": {
+    "cdMs": 16000,
+    "name": "Shadowstrike"
+  },
+  "13080000": {
+    "cdMs": 60000,
+    "name": "Evasion Stance"
+  },
+  "13130000": {
+    "cdMs": 12000,
+    "name": "Insignia Explosion"
+  },
+  "13140000": {
+    "cdMs": 30000,
+    "name": "Shadowstep"
+  },
+  "13180000": {
+    "cdMs": 120000,
+    "name": "Shadow Walk"
+  },
+  "13210000": {
+    "cdMs": 12000,
+    "name": "Whirlwind Slice"
+  },
+  "13230000": {
+    "cdMs": 60000,
+    "name": "Aerial Bind"
+  },
+  "13250000": {
+    "cdMs": 60000,
+    "name": "Smoke Bomb"
+  },
+  "13260000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "13300000": {
+    "cdMs": 120000,
+    "name": "Triniel's Dagger"
+  },
+  "13310000": {
+    "cdMs": 120000,
+    "name": "Illusive Clone"
+  },
+  "13360000": {
+    "cdMs": 30000,
+    "name": "Infiltrate"
+  },
+  "13370000": {
+    "cdMs": 60000,
+    "name": "Evasion Contract"
+  },
+  "14000000": {
+    "cdMs": 15000,
+    "name": "Dodge"
+  },
+  "14010000": {
+    "cdMs": 20000,
+    "name": "Deadshot"
+  },
+  "14050000": {
+    "cdMs": 5000,
+    "name": "Drill Dart"
+  },
+  "14060000": {
+    "cdMs": 40000,
+    "name": "Griffon Arrow"
+  },
+  "14070000": {
+    "cdMs": 20000,
+    "name": "Suppressing Arrow"
+  },
+  "14080000": {
+    "cdMs": 20000,
+    "name": "Burst Arrow"
+  },
+  "14090000": {
+    "cdMs": 10000,
+    "name": "Marking Shot"
+  },
+  "14110000": {
+    "cdMs": 20000,
+    "name": "Gale Arrow"
+  },
+  "14120000": {
+    "cdMs": 16000,
+    "name": "Ambush Kick"
+  },
+  "14130000": {
+    "cdMs": 15000,
+    "name": "Snare Shot"
+  },
+  "14140000": {
+    "cdMs": 30000,
+    "name": "Shackling Arrow"
+  },
+  "14170000": {
+    "cdMs": 20000,
+    "name": "Explosion Trap"
+  },
+  "14190000": {
+    "cdMs": 120000,
+    "name": "Stealth"
+  },
+  "14220000": {
+    "cdMs": 120000,
+    "name": "Bow of Blessing"
+  },
+  "14260000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "14270000": {
+    "cdMs": 30000,
+    "name": "Arrow Storm"
+  },
+  "14310000": {
+    "cdMs": 60000,
+    "name": "Vaizel's Authority"
+  },
+  "14380000": {
+    "cdMs": 90000,
+    "name": "Supporting Fire"
+  },
+  "15010000": {
+    "cdMs": 12000,
+    "name": "Flame Scattershot"
+  },
+  "15020000": {
+    "cdMs": 12000,
+    "name": "Firebomb"
+  },
+  "15040000": {
+    "cdMs": 30000,
+    "name": "Firestorm"
+  },
+  "15050000": {
+    "cdMs": 16000,
+    "name": "Blaze"
+  },
+  "15060000": {
+    "cdMs": 60000,
+    "name": "Hellfire"
+  },
+  "15080000": {
+    "cdMs": 10000,
+    "name": "Cold Snap"
+  },
+  "15090000": {
+    "cdMs": 12000,
+    "name": "Ice Chain"
+  },
+  "15100000": {
+    "cdMs": 12000,
+    "name": "Cold Wave"
+  },
+  "15120000": {
+    "cdMs": 24000,
+    "name": "Glacial Smite"
+  },
+  "15130000": {
+    "cdMs": 30000,
+    "name": "Soul Freeze"
+  },
+  "15140000": {
+    "cdMs": 30000,
+    "name": "Curse: Tree"
+  },
+  "15160000": {
+    "cdMs": 120000,
+    "name": "Steel Barrier"
+  },
+  "15180000": {
+    "cdMs": 60000,
+    "name": "Vaizel's Wisdom"
+  },
+  "15200000": {
+    "cdMs": 24000,
+    "name": "Cold Storm"
+  },
+  "15220000": {
+    "cdMs": 16000,
+    "name": "Frost Burst"
+  },
+  "15240000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "15290000": {
+    "cdMs": 60000,
+    "name": "Illusion"
+  },
+  "15300000": {
+    "cdMs": 180000,
+    "name": "Lumiel's Space"
+  },
+  "15380000": {
+    "cdMs": 120000,
+    "name": "Lumiel's Authority"
+  },
+  "15410000": {
+    "cdMs": 30000,
+    "name": "Hibernation"
+  },
+  "16010000": {
+    "cdMs": 10000,
+    "name": "Cold Shock"
+  },
+  "16020000": {
+    "cdMs": 16000,
+    "name": "Vacuum Explosion"
+  },
+  "16030000": {
+    "cdMs": 18000,
+    "name": "Earth Tremor"
+  },
+  "16040000": {
+    "cdMs": 12000,
+    "name": "Combustion"
+  },
+  "16060000": {
+    "cdMs": 16000,
+    "name": "Siphon"
+  },
+  "16080000": {
+    "cdMs": 60000,
+    "name": "Cry of Terror"
+  },
+  "16100000": {
+    "cdMs": 10000,
+    "name": "Summon: Fire Spirit"
+  },
+  "16110000": {
+    "cdMs": 10000,
+    "name": "Summon: Water Spirit"
+  },
+  "16120000": {
+    "cdMs": 10000,
+    "name": "Summon: Wind Spirit"
+  },
+  "16130000": {
+    "cdMs": 10000,
+    "name": "Summon: Earth Spirit"
+  },
+  "16170000": {
+    "cdMs": 60000,
+    "name": "Command: Proxy"
+  },
+  "16190000": {
+    "cdMs": 60000,
+    "name": "Enhance: Spirit's Benediction"
+  },
+  "16200000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "16210000": {
+    "cdMs": 60000,
+    "name": "Curse of Despair"
+  },
+  "16220000": {
+    "cdMs": 120000,
+    "name": "Cursed Cloud"
+  },
+  "16230000": {
+    "cdMs": 30000,
+    "name": "Seize Magic"
+  },
+  "16250000": {
+    "cdMs": 120000,
+    "name": "Summon: Ancient Spirit"
+  },
+  "16260000": {
+    "cdMs": 60000,
+    "name": "Magic Block"
+  },
+  "16290000": {
+    "cdMs": 1000,
+    "name": "Dismiss: Fire Spirit"
+  },
+  "16360000": {
+    "cdMs": 180000,
+    "name": "Kaisinel's Power"
+  },
+  "17010000": {
+    "cdMs": 10000,
+    "name": "Earth's Retribution"
+  },
+  "17020000": {
+    "cdMs": 12000,
+    "name": "Thunder and Lightning"
+  },
+  "17030000": {
+    "cdMs": 12000,
+    "name": "Discharge"
+  },
+  "17040000": {
+    "cdMs": 16000,
+    "name": "Judgment Thunder"
+  },
+  "17050000": {
+    "cdMs": 30000,
+    "name": "Divine Punishment"
+  },
+  "17100000": {
+    "cdMs": 5000,
+    "name": "Healing Light"
+  },
+  "17120000": {
+    "cdMs": 30000,
+    "name": "Radiant Recovery"
+  },
+  "17150000": {
+    "cdMs": 60000,
+    "name": "Divine Aura"
+  },
+  "17160000": {
+    "cdMs": 60000,
+    "name": "Benevolence"
+  },
+  "17190000": {
+    "cdMs": 20000,
+    "name": "Root"
+  },
+  "17240000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "17270000": {
+    "cdMs": 180000,
+    "name": "Salvation"
+  },
+  "17280000": {
+    "cdMs": 30000,
+    "name": "Power Burst"
+  },
+  "17290000": {
+    "cdMs": 180000,
+    "name": "Absolution"
+  },
+  "17300000": {
+    "cdMs": 30000,
+    "name": "Voice of Doom"
+  },
+  "17410000": {
+    "cdMs": 120000,
+    "name": "Light of Protection"
+  },
+  "17420000": {
+    "cdMs": 180000,
+    "name": "Yustiel's Power"
+  },
+  "17430000": {
+    "cdMs": 120000,
+    "name": "Prayer of Amplification"
+  },
+  "18010000": {
+    "cdMs": 12000,
+    "name": "Onslaught"
+  },
+  "18020000": {
+    "cdMs": 12000,
+    "name": "Resonance Crush"
+  },
+  "18030000": {
+    "cdMs": 16000,
+    "name": "Bolt Crush"
+  },
+  "18040000": {
+    "cdMs": 12000,
+    "name": "Incandescent Blow"
+  },
+  "18080000": {
+    "cdMs": 12000,
+    "name": "Wave Blow"
+  },
+  "18090000": {
+    "cdMs": 20000,
+    "name": "Rushing Smash"
+  },
+  "18120000": {
+    "cdMs": 30000,
+    "name": "Recuperation"
+  },
+  "18140000": {
+    "cdMs": 60000,
+    "name": "Focused Defense"
+  },
+  "18170000": {
+    "cdMs": 20000,
+    "name": "Healing Touch"
+  },
+  "18200000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "18220000": {
+    "cdMs": 30000,
+    "name": "Obliterate"
+  },
+  "18230000": {
+    "cdMs": 20000,
+    "name": "Ensnaring Mark"
+  },
+  "18240000": {
+    "cdMs": 60000,
+    "name": "Impeding Authority"
+  },
+  "18250000": {
+    "cdMs": 120000,
+    "name": "Power of the Storm"
+  },
+  "18330000": {
+    "cdMs": 180000,
+    "name": "Marchutan's Wrath"
+  },
+  "18420000": {
+    "cdMs": 120000,
+    "name": "Guardian Blessing"
+  },
+  "18440000": {
+    "cdMs": 180000,
+    "name": "Barrier Spell"
+  },
+  "19010000": {
+    "cdMs": 10000,
+    "name": "Flurry"
+  },
+  "19020000": {
+    "cdMs": 12000,
+    "name": "Torrent"
+  },
+  "19030000": {
+    "cdMs": 12000,
+    "name": "Beatdown"
+  },
+  "19040000": {
+    "cdMs": 12000,
+    "name": "Roundhouse"
+  },
+  "19060000": {
+    "cdMs": 16000,
+    "name": "Haymaker"
+  },
+  "19070000": {
+    "cdMs": 16000,
+    "name": "Whirlwind"
+  },
+  "19090000": {
+    "cdMs": 16000,
+    "name": "Ground Smash"
+  },
+  "19130000": {
+    "cdMs": 60000,
+    "name": "Rampage"
+  },
+  "19230000": {
+    "cdMs": 20000,
+    "name": "Shoulder Tackle"
+  },
+  "19250000": {
+    "cdMs": 24000,
+    "name": "Typhoon Flurry"
+  },
+  "19270000": {
+    "cdMs": 20000,
+    "name": "Hurricane Kick"
+  },
+  "19280000": {
+    "cdMs": 60000,
+    "name": "Ferocity"
+  },
+  "19300000": {
+    "cdMs": 30000,
+    "name": "Quake"
+  },
+  "19350000": {
+    "cdMs": 30000,
+    "name": "Focused Block"
+  },
+  "19360000": {
+    "cdMs": 90000,
+    "name": "Unstoppable"
+  },
+  "19410000": {
+    "cdMs": 120000,
+    "name": "Rewind"
+  },
+  "19450000": {
+    "cdMs": 60000,
+    "name": "Defiance"
+  },
+  "19460000": {
+    "cdMs": 20000,
+    "name": "Flash Step"
+  },
+  "101600": {
+    "cdMs": 60000,
+    "name": "Spirit Protection"
+  },
+  "101800": {
+    "cdMs": 30000,
+    "name": "Spirit Momentum"
+  },
+  "11030000": {
+    "cdMs": 12000,
+    "name": "Rupture Strike"
+  },
+  "11040000": {
+    "cdMs": 10000,
+    "name": "Wrathful Strike"
+  },
+  "11080000": {
+    "cdMs": 16000,
+    "name": "Blade Toss"
+  },
+  "11090000": {
+    "cdMs": 16000,
+    "name": "Blade Dance"
+  },
+  "11120000": {
+    "cdMs": 30000,
+    "name": "Blood Absorption"
+  },
+  "11140000": {
+    "cdMs": 60000,
+    "name": "Intimidating Roar"
+  },
+  "11170000": {
+    "cdMs": 16000,
+    "name": "Overhead Slam"
+  },
+  "11180000": {
+    "cdMs": 12000,
+    "name": "Reckless Strike"
+  },
+  "11210000": {
+    "cdMs": 24000,
+    "name": "Ankle Smash"
+  },
+  "11240000": {
+    "cdMs": 20000,
+    "name": "Wrath Wave"
+  },
+  "11280000": {
+    "cdMs": 30000,
+    "name": "Sword Aura Rampage"
+  },
+  "11290000": {
+    "cdMs": 24000,
+    "name": "Mocking Blade"
+  },
+  "11320000": {
+    "cdMs": 30000,
+    "name": "Wrath Burst"
+  },
+  "11330000": {
+    "cdMs": 20000,
+    "name": "Madness Blow"
+  },
+  "11350000": {
+    "cdMs": 10000,
+    "name": "Wrathful Strike"
+  },
+  "11370000": {
+    "cdMs": 24000,
+    "name": "Forced Fall"
+  },
+  "11380000": {
+    "cdMs": 60000,
+    "name": "Tenaciousness"
+  },
+  "11390000": {
+    "cdMs": 30000,
+    "name": "Rage Burst"
+  },
+  "11400000": {
+    "cdMs": 60000,
+    "name": "Lunge Stance"
+  },
+  "11420000": {
+    "cdMs": 16000,
+    "name": "Smashing Blow"
+  },
+  "11430000": {
+    "cdMs": 30000,
+    "name": "Forced Restraint"
+  },
+  "11440000": {
+    "cdMs": 16000,
+    "name": "Upward Strike"
+  },
+  "11450000": {
+    "cdMs": 20000,
+    "name": "Fracturing Rush"
+  },
+  "11460000": {
+    "cdMs": 20000,
+    "name": "Destructive Rush"
+  },
+  "11470000": {
+    "cdMs": 20000,
+    "name": "Unsheathing Rush"
+  },
+  "11700000": {
+    "cdMs": 30000,
+    "name": "Assault Strike"
+  },
+  "12020000": {
+    "cdMs": 10000,
+    "name": "Decisive Strike"
+  },
+  "12030000": {
+    "cdMs": 12000,
+    "name": "Desperate Strike"
+  },
+  "12080000": {
+    "cdMs": 10000,
+    "name": "Provoke"
+  },
+  "12130000": {
+    "cdMs": 16000,
+    "name": "Poach"
+  },
+  "12220000": {
+    "cdMs": 30000,
+    "name": "Grapple"
+  },
+  "12240000": {
+    "cdMs": 30000,
+    "name": "Judgment"
+  },
+  "12270000": {
+    "cdMs": 20000,
+    "name": "Debilitating Smash"
+  },
+  "12290000": {
+    "cdMs": 60000,
+    "name": "Bone-chilling Roar"
+  },
+  "12300000": {
+    "cdMs": 24000,
+    "name": "Annihilate"
+  },
+  "12310000": {
+    "cdMs": 120000,
+    "name": "Empyrean Lord's Punishment"
+  },
+  "12340000": {
+    "cdMs": 30000,
+    "name": "Flash Rampage"
+  },
+  "12350000": {
+    "cdMs": 16000,
+    "name": "Warding Strike"
+  },
+  "12410000": {
+    "cdMs": 20000,
+    "name": "Executing Blade"
+  },
+  "12420000": {
+    "cdMs": 30000,
+    "name": "Blade Storm"
+  },
+  "12440000": {
+    "cdMs": 16000,
+    "name": "Threatening Blow"
+  },
+  "12450000": {
+    "cdMs": 120000,
+    "name": "Battlefield Banner"
+  },
+  "12700000": {
+    "cdMs": 30000,
+    "name": "Assault Fury"
+  },
+  "13030000": {
+    "cdMs": 12000,
+    "name": "Breaking Slice"
+  },
+  "13050000": {
+    "cdMs": 10000,
+    "name": "Flash Slice"
+  },
+  "13090000": {
+    "cdMs": 20000,
+    "name": "Shadowblade Pursuit"
+  },
+  "13100000": {
+    "cdMs": 60000,
+    "name": "Savage Roar"
+  },
+  "13110000": {
+    "cdMs": 16000,
+    "name": "Savage Back Kick"
+  },
+  "13120000": {
+    "cdMs": 16000,
+    "name": "Savage Smash"
+  },
+  "13150000": {
+    "cdMs": 60000,
+    "name": "Frenzied Accord"
+  },
+  "13160000": {
+    "cdMs": 30000,
+    "name": "Apply Poison"
+  },
+  "13170000": {
+    "cdMs": 60000,
+    "name": "Surging Bloodlust"
+  },
+  "13220000": {
+    "cdMs": 24000,
+    "name": "Shadow Fall"
+  },
+  "13240000": {
+    "cdMs": 30000,
+    "name": "Aerial Slaughter"
+  },
+  "13270000": {
+    "cdMs": 16000,
+    "name": "Savage Fang"
+  },
+  "13280000": {
+    "cdMs": 16000,
+    "name": "Spiral Slice"
+  },
+  "13290000": {
+    "cdMs": 60000,
+    "name": "Prepare to Assassinate"
+  },
+  "13330000": {
+    "cdMs": 20000,
+    "name": "Storm Slice"
+  },
+  "13340000": {
+    "cdMs": 30000,
+    "name": "Storm Rampage"
+  },
+  "13350000": {
+    "cdMs": 24000,
+    "name": "Heart Gore"
+  },
+  "13380000": {
+    "cdMs": 16000,
+    "name": "Dark Strike"
+  },
+  "13390000": {
+    "cdMs": 60000,
+    "name": "Swift Contract"
+  },
+  "13700000": {
+    "cdMs": 30000,
+    "name": "Assault Ambush"
+  },
+  "14020000": {
+    "cdMs": 16000,
+    "name": "Snipe"
+  },
+  "14030000": {
+    "cdMs": 12000,
+    "name": "Rapid Fire"
+  },
+  "14040000": {
+    "cdMs": 12000,
+    "name": "Spiral Arrow"
+  },
+  "14100000": {
+    "cdMs": 18000,
+    "name": "Tempest Arrow"
+  },
+  "14150000": {
+    "cdMs": 20000,
+    "name": "Illusory Arrow"
+  },
+  "14160000": {
+    "cdMs": 24000,
+    "name": "Sealing Arrow"
+  },
+  "14180000": {
+    "cdMs": 30000,
+    "name": "Ensnaring Trap"
+  },
+  "14200000": {
+    "cdMs": 16000,
+    "name": "Guerilla Strike"
+  },
+  "14210000": {
+    "cdMs": 60000,
+    "name": "Eye of Rapid Burst"
+  },
+  "14230000": {
+    "cdMs": 24000,
+    "name": "Explosive Arrow"
+  },
+  "14240000": {
+    "cdMs": 30000,
+    "name": "Afterimage"
+  },
+  "14250000": {
+    "cdMs": 60000,
+    "name": "Hunters Resolve"
+  },
+  "14290000": {
+    "cdMs": 30000,
+    "name": "Arrow of Space-time"
+  },
+  "14300000": {
+    "cdMs": 20000,
+    "name": "Dust Arrow"
+  },
+  "14320000": {
+    "cdMs": 16000,
+    "name": "Impact Kick"
+  },
+  "14330000": {
+    "cdMs": 20000,
+    "name": "Arrow Scattershot"
+  },
+  "14340000": {
+    "cdMs": 24000,
+    "name": "Tempest Shot"
+  },
+  "14350000": {
+    "cdMs": 120000,
+    "name": "Mother Nature's Breath"
+  },
+  "14360000": {
+    "cdMs": 24000,
+    "name": "Explosive Arrow"
+  },
+  "14370000": {
+    "cdMs": 30000,
+    "name": "Lightning Arrow"
+  },
+  "14700000": {
+    "cdMs": 30000,
+    "name": "Assault Smite"
+  },
+  "15030000": {
+    "cdMs": 16000,
+    "name": "Burst"
+  },
+  "15110000": {
+    "cdMs": 24000,
+    "name": "Winter's Shackles"
+  },
+  "15150000": {
+    "cdMs": 12000,
+    "name": "Frost"
+  },
+  "15210000": {
+    "cdMs": 10000,
+    "name": "Flame Arrow"
+  },
+  "15230000": {
+    "cdMs": 60000,
+    "name": "Arctic Armor"
+  },
+  "15250000": {
+    "cdMs": 24000,
+    "name": "Pyroclasm"
+  },
+  "15270000": {
+    "cdMs": 30000,
+    "name": "Summon Flame"
+  },
+  "15280000": {
+    "cdMs": 30000,
+    "name": "Bittercold Wind"
+  },
+  "15310000": {
+    "cdMs": 60000,
+    "name": "Wish of Concentration"
+  },
+  "15320000": {
+    "cdMs": 24000,
+    "name": "Delayed Explosion"
+  },
+  "15330000": {
+    "cdMs": 60000,
+    "name": "Winter's Illusion"
+  },
+  "15340000": {
+    "cdMs": 30000,
+    "name": "Curse: Old Tree"
+  },
+  "15350000": {
+    "cdMs": 20000,
+    "name": "Magic Energy Blast"
+  },
+  "15360000": {
+    "cdMs": 120000,
+    "name": "Divine Burst"
+  },
+  "15390000": {
+    "cdMs": 60000,
+    "name": "Fire Wall"
+  },
+  "15400000": {
+    "cdMs": 60000,
+    "name": "Element Enhancement"
+  },
+  "15700000": {
+    "cdMs": 30000,
+    "name": "Assault Bombardment"
+  },
+  "16050000": {
+    "cdMs": 16000,
+    "name": "Ashy Call"
+  },
+  "16070000": {
+    "cdMs": 20000,
+    "name": "Soul's Cry"
+  },
+  "16140000": {
+    "cdMs": 24000,
+    "name": "Jointstrike: Curse"
+  },
+  "16150000": {
+    "cdMs": 24000,
+    "name": "Jointstrike: Corrode"
+  },
+  "16240000": {
+    "cdMs": 30000,
+    "name": "Jointstrike: Destructive Attack"
+  },
+  "16300000": {
+    "cdMs": 60000,
+    "name": "Elemental Fusion"
+  },
+  "16330000": {
+    "cdMs": 60000,
+    "name": "Dimensional Control"
+  },
+  "16340000": {
+    "cdMs": 20000,
+    "name": "Rapid Scattershot"
+  },
+  "16370000": {
+    "cdMs": 120000,
+    "name": "Flame Blessing"
+  },
+  "16700000": {
+    "cdMs": 30000,
+    "name": "Assault Terror"
+  },
+  "17060000": {
+    "cdMs": 10000,
+    "name": "Bolt"
+  },
+  "17070000": {
+    "cdMs": 16000,
+    "name": "Chain of Torment"
+  },
+  "17080000": {
+    "cdMs": 20000,
+    "name": "Debilitating Mark"
+  },
+  "17090000": {
+    "cdMs": 12000,
+    "name": "Light of Regeneration"
+  },
+  "17320000": {
+    "cdMs": 30000,
+    "name": "Blessing of Regeneration"
+  },
+  "17350000": {
+    "cdMs": 24000,
+    "name": "Condemnation"
+  },
+  "17370000": {
+    "cdMs": 20000,
+    "name": "Lightning Strike Scattershot"
+  },
+  "17390000": {
+    "cdMs": 180000,
+    "name": "Summon Resurrection"
+  },
+  "17400000": {
+    "cdMs": 30000,
+    "name": "Earth Punishment"
+  },
+  "17440000": {
+    "cdMs": 60000,
+    "name": "Noble Aura"
+  },
+  "17700000": {
+    "cdMs": 30000,
+    "name": "Assault Mark"
+  },
+  "18050000": {
+    "cdMs": 12000,
+    "name": "Bursting Blow"
+  },
+  "18060000": {
+    "cdMs": 16000,
+    "name": "Impactful Crush"
+  },
+  "18070000": {
+    "cdMs": 12000,
+    "name": "Crushing Blow"
+  },
+  "18100000": {
+    "cdMs": 16000,
+    "name": "Dark Crush"
+  },
+  "18130000": {
+    "cdMs": 20000,
+    "name": "Fracturing Blow"
+  },
+  "18150000": {
+    "cdMs": 16000,
+    "name": "Heat Wave Blow"
+  },
+  "18160000": {
+    "cdMs": 6000,
+    "name": "Sprint Mantra"
+  },
+  "18190000": {
+    "cdMs": 6000,
+    "name": "Undefeated Mantra"
+  },
+  "18210000": {
+    "cdMs": 24000,
+    "name": "Tremor Crush"
+  },
+  "18290000": {
+    "cdMs": 20000,
+    "name": "Spinning Strike"
+  },
+  "18300000": {
+    "cdMs": 30000,
+    "name": "Gust Rampage"
+  },
+  "18370000": {
+    "cdMs": 30000,
+    "name": "Storm Chain"
+  },
+  "18390000": {
+    "cdMs": 16000,
+    "name": "Surging Strike"
+  },
+  "18400000": {
+    "cdMs": 20000,
+    "name": "Piercing Strike"
+  },
+  "18410000": {
+    "cdMs": 20000,
+    "name": "Crushing Strike"
+  },
+  "18700000": {
+    "cdMs": 30000,
+    "name": "Assault Shock"
+  },
+  "19050000": {
+    "cdMs": 12000,
+    "name": "Cross Hook"
+  },
+  "19080000": {
+    "cdMs": 16000,
+    "name": "Whirlwind [Rampage]"
+  },
+  "19100000": {
+    "cdMs": 16000,
+    "name": "Ground Smash [Rampage]"
+  },
+  "19110000": {
+    "cdMs": 16000,
+    "name": "Relentless Kick"
+  },
+  "19120000": {
+    "cdMs": 16000,
+    "name": "Relentless Kick [Rampage]"
+  },
+  "19150000": {
+    "cdMs": 20000,
+    "name": "Ascending Blow [Rampage]"
+  },
+  "19160000": {
+    "cdMs": 20000,
+    "name": "Ascending Blow"
+  },
+  "19170000": {
+    "cdMs": 16000,
+    "name": "Sweeping Kick"
+  },
+  "19180000": {
+    "cdMs": 16000,
+    "name": "Sweeping Kick [Rampage]"
+  },
+  "19190000": {
+    "cdMs": 24000,
+    "name": "Exploding Fist [Rampage]"
+  },
+  "19200000": {
+    "cdMs": 24000,
+    "name": "Exploding Fist"
+  },
+  "19220000": {
+    "cdMs": 20000,
+    "name": "Phantom Kick [Rampage]"
+  },
+  "19240000": {
+    "cdMs": 20000,
+    "name": "Shoulder Tackle [Rampage]"
+  },
+  "19260000": {
+    "cdMs": 24000,
+    "name": "Typhoon Flurry [Rampage]"
+  },
+  "19290000": {
+    "cdMs": 20000,
+    "name": "Surging Cleave"
+  },
+  "19310000": {
+    "cdMs": 24000,
+    "name": "Pulverize"
+  },
+  "19320000": {
+    "cdMs": 20000,
+    "name": "Sever Bloodstream"
+  },
+  "19330000": {
+    "cdMs": 60000,
+    "name": "Phantom"
+  },
+  "19340000": {
+    "cdMs": 30000,
+    "name": "Circulation [Normal]"
+  },
+  "19370000": {
+    "cdMs": 60000,
+    "name": "Full Force"
+  },
+  "19380000": {
+    "cdMs": 20000,
+    "name": "Assault Blow"
+  },
+  "19390000": {
+    "cdMs": 24000,
+    "name": "Discharge Energy"
+  },
+  "19400000": {
+    "cdMs": 30000,
+    "name": "Time Bomb"
+  },
+  "19420000": {
+    "cdMs": 16000,
+    "name": "Chain Fist"
+  },
+  "19430000": {
+    "cdMs": 16000,
+    "name": "Chain Fist [Rampage]"
+  },
+  "19470000": {
+    "cdMs": 20000,
+    "name": "Shadowslicer"
+  },
+  "19510000": {
+    "cdMs": 10000,
+    "name": "Flurry [Rampage]"
+  },
+  "19520000": {
+    "cdMs": 12000,
+    "name": "Torrent [Rampage]"
+  },
+  "19530000": {
+    "cdMs": 12000,
+    "name": "Beatdown [Rampage]"
+  },
+  "19540000": {
+    "cdMs": 12000,
+    "name": "Roundhouse [Rampage]"
+  },
+  "19550000": {
+    "cdMs": 12000,
+    "name": "Cross Hook [Rampage]"
+  },
+  "19560000": {
+    "cdMs": 16000,
+    "name": "Haymaker [Rampage]"
+  },
+  "2010101": {
+    "cdMs": 30000,
+    "name": "Life Serum"
+  },
+  "2010102": {
+    "cdMs": 30000,
+    "name": "Superior Life Serum"
+  },
+  "2010105": {
+    "cdMs": 30000,
+    "name": "Wind Breeze Special Life Serum"
+  },
+  "2010201": {
+    "cdMs": 30000,
+    "name": "Mana Serum"
+  },
+  "2010202": {
+    "cdMs": 30000,
+    "name": "Superior Mana Serum"
+  },
+  "2010203": {
+    "cdMs": 30000,
+    "name": "Wind Breeze Special Mana Serum"
+  },
+  "2010301": {
+    "cdMs": 30000,
+    "name": "Wind Serum"
+  },
+  "2010302": {
+    "cdMs": 30000,
+    "name": "Superior Wind Serum"
+  },
+  "2010401": {
+    "cdMs": 30000,
+    "name": "Stamina Serum"
+  },
+  "2010402": {
+    "cdMs": 30000,
+    "name": "Superior Stamina Serum"
+  },
+  "2011101": {
+    "cdMs": 30000,
+    "name": "Life Potion"
+  },
+  "2011102": {
+    "cdMs": 30000,
+    "name": "Superior Life Potion"
+  },
+  "2011103": {
+    "cdMs": 30000,
+    "name": "Life Elixir"
+  },
+  "2011104": {
+    "cdMs": 30000,
+    "name": "Superior Life Elixir"
+  },
+  "2011201": {
+    "cdMs": 30000,
+    "name": "Mana Potion"
+  },
+  "2011202": {
+    "cdMs": 30000,
+    "name": "Superior Mana Potion"
+  },
+  "2011501": {
+    "cdMs": 30000,
+    "name": "Recovery Serum"
+  },
+  "2011502": {
+    "cdMs": 30000,
+    "name": "Superior Recovery Serum"
+  },
+  "2020101": {
+    "cdMs": 30000,
+    "name": "Healing Potion"
+  },
+  "2020102": {
+    "cdMs": 30000,
+    "name": "Superior Healing Potion"
+  }
+}

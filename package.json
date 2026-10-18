@@ -1,0 +1,58 @@
+{
+  "name": "daeva-lens",
+  "productName": "Daeva Lens",
+  "version": "2.2.0",
+  "description": "Daeva Lens: Aion 2 DPS / healing meter, death recap, boss break gauge, skill cooldown alerts. Reads a copy of incoming network traffic; never touches the game.",
+  "main": "main.js",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "author": "W-Code (https://github.com/W-Code-Hub)",
+  "scripts": {
+    "start": "electron .",
+    "tekrar": "node tools/replay.js",
+    "dist": "electron-builder --win dir --x64 && node tools/postbuild.js",
+    "test": "node tools/test.js"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "^26.0.0",
+    "resedit": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.daevalens.app",
+    "productName": "Daeva Lens",
+    "npmRebuild": false,
+    "files": [
+      "main.js",
+      "lib/**",
+      "ui/**",
+      "data/**",
+      "bin/**",
+      "assets/**",
+      "package.json",
+      "LICENSE",
+      "!ui/dev/**",
+      "!lib/dev.js",
+      "!lib/devlog.js",
+      "!lib/deneysel/**"
+    ],
+    "asarUnpack": [
+      "bin/**"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "dir"
+      ],
+      "signAndEditExecutable": false
+    },
+    "electronLanguages": [
+      "en-US",
+      "tr"
+    ],
+    "compression": "normal",
+    "copyright": "Copyright © 2026 W-Code (W-Code-Hub) · GPL-3.0-or-later"
+  }
+}
